@@ -8,9 +8,9 @@ using std::cout;
 using std::endl;
 using std::left;
 using std::setw;
+using std::setprecision;
 
 int k = 1; // mokinių skaičius
-int n = 5; // pazymiu skaičius
 
 struct stud_struct{
     string var, pav;
@@ -18,3 +18,5 @@ struct stud_struct{
     int egz;
     double galutinis;
 };
+
+vector<stud_struct> grupe;
