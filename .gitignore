@@ -1,0 +1,5 @@
+#vscode environment
+.vscode/
+
+#build output
+OOP1.exe
