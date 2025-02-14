@@ -3,8 +3,7 @@
 int main()
 {
     // Ivedimas
-    stud_struct temp;
-    for (int i = 0; i < k; i++)
+    while (true)
     {
         cout << "Iveskite mokinio varda: ";
         cin >> temp.var;
@@ -12,10 +11,10 @@ int main()
         cin >> temp.pav;
         while (true)
         {
-            int pazymys;
-            cout << "Iveskite mokinio pazymi (0 jei daugiau pazymiu nera): ";
+            pazymys = 0;
+            cout << "Iveskite mokinio pazymi (0, jei daugiau pazymiu nera): ";
             cin >> pazymys;
-            if (pazymys != 0)
+            if (pazymys)
                 temp.paz.push_back(pazymys);
             else
                 break;
@@ -23,30 +22,42 @@ int main()
         cout << "Iveskite egzamino rezultata: ";
         cin >> temp.egz;
         grupe.push_back(temp);
+        k++;
+
+        cout << "Ar norite toliau ivesti mokinius?  y/n: ";
+        cin >> choice;
+        if (choice == 'n')
+            break;
     }
+
+    cout << "\nAr norite skaiciuoti mediana ar vidurki?\n(0 - Mediana, 1 - Vidurkis): ";
+    cin >> bool_choice;
 
     // Galutinio rezultato apskaiciavimas
     for (int i = 0; i < k; i++)
     {
-        // Vidurkis
-        double vid{};
-        for (int j = 0; j < grupe[i].paz.size(); j++)
+        if (bool_choice)
         {
-            vid += grupe[i].paz[j];
+            x = vidurkis(i);
         }
-        vid /= grupe[i].paz.size();
-        // Galutinio pazymio skaiciavimas
-        double gal = (0.4 * vid) + (0.6 * grupe[i].egz);
-        cout << i << ". vid = " << setprecision(3) << vid << endl;
-        cout << i << ". egz = " << grupe[i].egz << endl;
+        else
+        {
+            cout << "3";
+            x = mediana(i);
+        }
+
+        //double gal = (0.4 * x) + (0.6 * grupe[i].egz);
+        double gal = x;
         grupe[i].galutinis = gal;
     }
 
-    cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(20) << "Galutinis (Vid.)" << endl;
+    // Formatuotas Isvedimas
+    cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde";
+    bool_choice? cout << setw(20) << "Galutinis (Vid.)\n" : cout << setw(20) << "Galutinis (Med.)\n";
     cout << "-------------------------------------------------------" << endl;
     for (int i = 0; i < grupe.size(); i++)
     {
-        cout << setw(15) << left << grupe[i].var << setw(15) << grupe[i].pav << setw(20) << setprecision(3) <<grupe[i].galutinis << endl; // Print galutinis
+        cout << setw(15) << left << grupe[i].var << setw(15) << grupe[i].pav << setw(20) << setprecision(3) << grupe[i].galutinis << endl;
     }
 
     return 0;
