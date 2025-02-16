@@ -10,6 +10,7 @@ using std::endl;
 using std::left;
 using std::setprecision;
 using std::setw;
+using std::fixed;
 
 #include <algorithm>
 using std::sort;
@@ -18,9 +19,7 @@ using std::sort;
 using std::string;
 
 int k{};          // mokinių skaičius
-int x;            // mediana arba vidurkis
 char choice;      // vartotojo pasirinkimas (y/n)
-bool bool_choice; // vartotojo pasirinkimas (1/0)
 int pazymys; // 
 
 struct stud_struct
@@ -28,7 +27,7 @@ struct stud_struct
     string var, pav;
     vector<int> paz;
     int egz;
-    double galutinis;
+    vector<double> galutinis;
 };
 
 stud_struct temp;
@@ -57,12 +56,10 @@ int mediana(int i)
 
     if (grupe[i].paz.size() % 2 == 0)
     {
-        cout << "\n%2 == 0";
         med = (sorted_paz[j] + sorted_paz[j + 1]) / 2;
     }
     else
     {
-        cout << "\n%2 == 1";
         med = sorted_paz[j];
     }
     return med;

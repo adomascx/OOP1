@@ -1,10 +1,6 @@
 #vscode environment
 .vscode/
 
-#build output
-OOP1.exe
-OOP1
-
 #testing files
 test.cpp
 test.exe

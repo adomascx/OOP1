@@ -30,34 +30,35 @@ int main()
             break;
     }
 
-    cout << "\nAr norite skaiciuoti mediana ar vidurki?\n(0 - Mediana, 1 - Vidurkis): ";
-    cin >> bool_choice;
+    cout << "\nAr norite taip pat skaiciuoti mediana?   y/n: ";
+    cin >> choice;
 
     // Galutinio rezultato apskaiciavimas
     for (int i = 0; i < k; i++)
     {
-        if (bool_choice)
-        {
-            x = vidurkis(i);
-        }
-        else
-        {
-            cout << "3";
-            x = mediana(i);
-        }
+        // Vidurkio apskaiciavimas
+        double galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
+        grupe[i].galutinis.push_back(galutinisVid);
 
-        //double gal = (0.4 * x) + (0.6 * grupe[i].egz);
-        double gal = x;
-        grupe[i].galutinis = gal;
+        // Medianos apskaiciavimas
+        if (choice == 'y')
+        {
+            double galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
+            grupe[i].galutinis.push_back(galutinisMed);
+        }
     }
 
     // Formatuotas Isvedimas
-    cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde";
-    bool_choice? cout << setw(20) << "Galutinis (Vid.)\n" : cout << setw(20) << "Galutinis (Med.)\n";
-    cout << "-------------------------------------------------------" << endl;
-    for (int i = 0; i < grupe.size(); i++)
+    cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
+    if (choice == 'y')
+        cout << "/ " << setw(20) << "Galutinis (Med.)";
+    cout << endl << string(75, '-') << endl;
+    for (auto &i : grupe)
     {
-        cout << setw(15) << left << grupe[i].var << setw(15) << grupe[i].pav << setw(20) << setprecision(3) << grupe[i].galutinis << endl;
+        cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
+        for (auto j : i.galutinis)
+            cout << j;
+        cout << endl;
     }
 
     return 0;
