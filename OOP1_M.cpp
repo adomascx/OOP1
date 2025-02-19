@@ -26,6 +26,15 @@ int main()
             else
                 break;
         }
+
+        // Patikrinti, ar naudotojas ivede pazymiu
+        // Jei ne, baigti programa
+        if (temp.paz_count == 0)
+        {
+            cout << "Nera ivestu pazymiu. Prasome ivesti bent viena pazymi." << endl;
+            return 1;
+        }
+
         cout << "Iveskite egzamino rezultata: ";
         cin >> temp.egz;
         grupe.push_back(temp);
