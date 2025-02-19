@@ -1,3 +1,4 @@
+#include "paz_lib_M.cpp"
 #include "paz_lib_M.h"
 
 int main()
