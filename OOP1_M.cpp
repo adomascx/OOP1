@@ -10,7 +10,6 @@ int main()
         cout << "Iveskite mokinio pavarde: ";
         cin >> temp.pav;
 
-        // Initialize dynamic arrays for this student
         temp.paz = nullptr;
         temp.paz_count = 0;
         temp.galutinis = nullptr;
@@ -22,7 +21,7 @@ int main()
             cout << "Iveskite mokinio pazymi (0, jei daugiau pazymiu nera): ";
             cin >> pazymys;
             if (pazymys)
-                push_back(temp.paz, temp.paz_count, pazymys);
+                pushback(temp.paz, temp.paz_count, pazymys);
             else
                 break;
         }
@@ -45,13 +44,13 @@ int main()
     {
         // Vidurkio apskaiciavimas
         double galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
-        push_back(grupe[i].galutinis, grupe[i].galutinis_count, galutinisVid);
+        pushback(grupe[i].galutinis, grupe[i].galutinis_count, galutinisVid);
 
         // Medianos apskaiciavimas
         if (choice == 'y')
         {
             double galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
-            push_back(grupe[i].galutinis, grupe[i].galutinis_count, galutinisMed);
+            pushback(grupe[i].galutinis, grupe[i].galutinis_count, galutinisMed);
         }
     }
 
@@ -60,11 +59,17 @@ int main()
     if (choice == 'y')
         cout << "/ " << setw(20) << "Galutinis (Med.)";
     cout << endl << string(75, '-') << endl;
-    for (auto &i : grupe)
+
+    for (int i = 0; i < k; i++)
     {
-        cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
-        for (auto j : i.galutinis)
-            cout << j;
+        cout << setw(15) << left << grupe[i].var
+             << setw(15) << grupe[i].pav
+             << fixed << setprecision(3) << setw(20);
+
+        for (int j = 0; j < grupe[i].galutinis_count; j++)
+        {
+            cout << grupe[i].galutinis[j] << " ";
+        }
         cout << endl;
     }
 
