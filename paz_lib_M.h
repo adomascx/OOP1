@@ -1,6 +1,3 @@
-#include <vector>
-using std::vector;
-
 #include <iostream>
 using std::cin;
 using std::cout;
@@ -18,9 +15,9 @@ using std::sort;
 #include <string>
 using std::string;
 
-int k{};          // mokinių skaičius
-char choice;      // vartotojo pasirinkimas (y/n)
-int pazymys; // 
+int k{};     // mokinių skaičius
+char choice; // vartotojo pasirinkimas (y/n)
+int pazymys; // įvestas pažymys
 
 struct stud_struct
 {
