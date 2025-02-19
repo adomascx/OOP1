@@ -50,7 +50,7 @@ void pushback(int *&arr, int &count, int value)
 void pushback(double *&arr, int &count, double value)
 {
     double *temp = new double[count + 1];
-    
+
     for (int i = 0; i < count; i++)
     {
         temp[i] = arr[i];

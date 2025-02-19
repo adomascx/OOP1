@@ -59,7 +59,8 @@ int main()
     cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
     if (choice == 'y')
         cout << "/ " << setw(20) << "Galutinis (Med.)";
-    cout << endl << string(75, '-') << endl;
+    cout << endl
+         << string(75, '-') << endl;
 
     for (int i = 0; i < k; i++)
     {

@@ -53,7 +53,8 @@ int main()
     cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
     if (choice == 'y')
         cout << "/ " << setw(20) << "Galutinis (Med.)";
-    cout << endl << string(75, '-') << endl;
+    cout << endl
+         << string(75, '-') << endl;
     for (auto &i : grupe)
     {
         cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);

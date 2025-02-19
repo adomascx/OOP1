@@ -9,10 +9,10 @@ using std::cout;
 using std::endl;
 
 #include <iomanip>
+using std::fixed;
 using std::left;
 using std::setprecision;
 using std::setw;
-using std::fixed;
 
 #include <algorithm>
 using std::sort;
@@ -20,9 +20,9 @@ using std::sort;
 #include <string>
 using std::string;
 
-int k{};          // mokinių skaičius
-char choice;      // vartotojo pasirinkimas (y/n)
-int pazymys; // 
+int k{};     // mokinių skaičius
+char choice; // vartotojo pasirinkimas (y/n)
+int pazymys; // įvestas pažymys
 
 struct stud_struct
 {

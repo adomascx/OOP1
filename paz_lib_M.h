@@ -9,10 +9,10 @@ using std::cout;
 using std::endl;
 
 #include <iomanip>
+using std::fixed;
 using std::left;
 using std::setprecision;
 using std::setw;
-using std::fixed;
 
 #include <algorithm>
 using std::sort;
