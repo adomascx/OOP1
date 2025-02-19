@@ -9,13 +9,20 @@ int main()
         cin >> temp.var;
         cout << "Iveskite mokinio pavarde: ";
         cin >> temp.pav;
+
+        // Initialize dynamic arrays for this student
+        temp.paz = nullptr;
+        temp.paz_count = 0;
+        temp.galutinis = nullptr;
+        temp.galutinis_count = 0;
+
         while (true)
         {
             pazymys = 0;
             cout << "Iveskite mokinio pazymi (0, jei daugiau pazymiu nera): ";
             cin >> pazymys;
             if (pazymys)
-                temp.paz.push_back(pazymys);
+                push_back(temp.paz, temp.paz_count, pazymys);
             else
                 break;
         }
@@ -38,13 +45,13 @@ int main()
     {
         // Vidurkio apskaiciavimas
         double galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
-        grupe[i].galutinis.push_back(galutinisVid);
+        push_back(grupe[i].galutinis, grupe[i].galutinis_count, galutinisVid);
 
         // Medianos apskaiciavimas
         if (choice == 'y')
         {
             double galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
-            grupe[i].galutinis.push_back(galutinisMed);
+            push_back(grupe[i].galutinis, grupe[i].galutinis_count, galutinisMed);
         }
     }
 
