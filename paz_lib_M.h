@@ -20,6 +20,8 @@ using std::sort;
 #include <string>
 using std::string;
 
+#define N 32 // sugeneruotų pažymių skaičius
+
 int k{};     // mokinių skaičius
 char choice; // vartotojo pasirinkimas (y/n)
 int pazymys; // įvestas pažymys
@@ -36,3 +38,6 @@ struct stud_struct
 
 stud_struct temp;
 vector<stud_struct> grupe;
+
+string vardas[] = {"Adomas", "Julius", "Mantas", "Lukas", "Dominykas", "Tomas", "Jonas", "Paulius", "Dovydas", "Karolis", "Rokas", "Simonas", "Martynas", "Arnas", "Justas", "Vilius"};
+string pavarde[] = {"Kazlauskas", "Petrauskas", "Jankauskas", "Stankevicius", "Butkus", "Paulauskas", "Urbonas", "Vasiliauskas", "Lukosevicius", "Simkus", "Brazaitis", "Kavaliauskas", "Mikalauskas", "Navickas", "Rimkus", "Zukauskas"};
