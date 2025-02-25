@@ -1,13 +1,20 @@
 #vscode environment
 .vscode/
 
-#testing files
+#Testing
 test.cpp
 test.exe
 test
+studentai10000.txt
+studentai100000.txt
+studentai1000000.txt
 
-#Build files
+#Build output
 OOP1_V.exe
 OOP1_V
 OOP1_M.exe
 OOP1_M
+
+#I/O
+kursiokai.txt
+rezultatai.txt

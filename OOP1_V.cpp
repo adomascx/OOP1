@@ -10,7 +10,8 @@ int main()
          << "1 - Ranka" << endl
          << "2 - generuoti TIK pazymius" << endl
          << "3 - generuoti studentu vardus IR pazymius" << endl
-         << "4 - baigti darba" << endl;
+         << "4 - Ivesti duomenis is failo" << endl
+         << "5 - baigti darba" << endl;
     cin >> choice;
 
     switch (choice)
@@ -103,6 +104,9 @@ int main()
     case '4':
         return 0;
 
+    case '5':
+        break;
+
     default:
         cout << "Netinkamas pasirinkimas. Pasirinkite skaiciu nuo 1 iki 4" << endl;
         return 1;
@@ -130,7 +134,7 @@ int main()
         cout << "/ " << setw(20) << "Galutinis (Med.)";
     cout << endl
          << string(75, '-') << endl;
-         
+
     for (auto &i : grupe)
     {
         cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);

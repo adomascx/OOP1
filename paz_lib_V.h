@@ -20,7 +20,8 @@ using std::sort;
 #include <string>
 using std::string;
 
-#define N 32 // sugeneruotų pažymių skaičius
+static const int N = 32;                          // sugeneruotų pažymių skaičius
+static const char input_file[] = "kursiokai.txt"; // failo, iš kurio įvedami duomenys, pavadinimas
 
 int k{};     // mokinių skaičius
 char choice; // vartotojo pasirinkimas (y/n)
