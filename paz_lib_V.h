@@ -20,6 +20,13 @@ using std::sort;
 #include <string>
 using std::string;
 
+#include <sstream>
+using std::istringstream;
+
+#include <fstream>
+using std::ifstream;
+using std:: ofstream;
+
 static const int N = 32;                          // sugeneruotų pažymių skaičius
 static const char input_file[] = "kursiokai.txt"; // failo, iš kurio įvedami duomenys, pavadinimas
 

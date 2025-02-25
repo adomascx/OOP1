@@ -17,6 +17,7 @@ int main()
     switch (choice)
     {
     case '1':
+    {
         while (true)
         {
             cout << "Iveskite mokinio varda: ";
@@ -54,8 +55,10 @@ int main()
                 break;
         }
         break;
+    }
 
     case '2':
+    {
         while (true)
         {
             cout << "Iveskite mokinio varda: ";
@@ -79,9 +82,10 @@ int main()
                 break;
         }
         break;
+    }
 
     case '3':
-
+    {
         cout << "Kiek mokiniu norite sugeneruoti?: ";
         int i;
         cin >> i;
@@ -100,12 +104,60 @@ int main()
             grupe.push_back(temp);
         }
         break;
+    }
 
     case '4':
-        return 0;
+    {
+        string line, word;
+        ifstream fd(input_file);
+
+        if (!fd)
+        {
+            cout << "Nepavyko atidaryti failo" << endl;
+            return 1;
+        }
+
+        getline(fd, line);
+        istringstream stream(line);
+
+        int nd_count{};
+        while (stream >> word)
+        {
+            nd_count++;
+        }
+
+        nd_count -= 3;
+
+        while (getline(fd, line))
+        {
+            istringstream iss(line);
+
+            iss >> temp.var >> temp.pav;
+
+            for (int i = 0; i < nd_count; i++)
+            {
+                iss >> pazymys;
+                temp.paz.push_back(pazymys);
+            }
+
+            iss >> temp.egz;
+
+            grupe.push_back(temp);
+            k++;
+        }
+
+        fd.close();
+
+        if (k == 0)
+        {
+            cout << "Failas tuscias arba netinkamo formato!" << endl;
+            return 1;
+        }
+        break;
+    }
 
     case '5':
-        break;
+        return 0;
 
     default:
         cout << "Netinkamas pasirinkimas. Pasirinkite skaiciu nuo 1 iki 4" << endl;
