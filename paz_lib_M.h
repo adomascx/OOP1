@@ -32,8 +32,8 @@ struct stud_struct
     int *paz;
     int paz_count;
     int egz;
-    double *galutinis;
-    int galutinis_count;
+    double galutinisVid;
+    double galutinisMed;
 };
 
 stud_struct temp;

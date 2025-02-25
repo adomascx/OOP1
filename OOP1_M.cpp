@@ -20,8 +20,6 @@ int main()
         {
             temp.paz = nullptr;
             temp.paz_count = 0;
-            temp.galutinis = nullptr;
-            temp.galutinis_count = 0;
 
             cout << "Iveskite mokinio varda: ";
             cin >> temp.var;
@@ -64,8 +62,6 @@ int main()
         {
             temp.paz = nullptr;
             temp.paz_count = 0;
-            temp.galutinis = nullptr;
-            temp.galutinis_count = 0;
 
             cout << "Iveskite mokinio varda: ";
             cin >> temp.var;
@@ -99,8 +95,7 @@ int main()
         {
             temp.paz = nullptr;
             temp.paz_count = 0;
-            temp.galutinis = nullptr;
-            temp.galutinis_count = 0;
+
             for (int j = 0; j < N; j++)
             {
                 pushback(temp.paz, temp.paz_count, (rand() % 10));
@@ -129,14 +124,12 @@ int main()
     for (int i = 0; i < k; i++)
     {
         // Vidurkio apskaiciavimas
-        double galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
-        pushback(grupe[i].galutinis, grupe[i].galutinis_count, galutinisVid);
+        grupe[i].galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
 
         // Medianos apskaiciavimas
         if (choice == 'y')
         {
-            double galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
-            pushback(grupe[i].galutinis, grupe[i].galutinis_count, galutinisMed);
+            grupe[i].galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
         }
     }
 
@@ -149,14 +142,10 @@ int main()
 
     for (int i = 0; i < k; i++)
     {
-        cout << setw(15) << left << grupe[i].var
-             << setw(15) << grupe[i].pav
-             << fixed << setprecision(3) << setw(20);
-
-        for (int j = 0; j < grupe[i].galutinis_count; j++)
-        {
-            cout << grupe[i].galutinis[j] << " ";
-        }
+        cout << setw(15) << left << grupe[i].var << setw(15) << grupe[i].pav << fixed << setprecision(3) << setw(20);
+        cout << grupe[i].galutinisVid << " ";
+        if (choice == 'y')
+            cout << grupe[i].galutinisMed << " ";
         cout << endl;
     }
 

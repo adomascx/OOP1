@@ -115,14 +115,12 @@ int main()
     for (int i = 0; i < k; i++)
     {
         // Vidurkio apskaiciavimas
-        double galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
-        grupe[i].galutinis.push_back(galutinisVid);
+        grupe[i].galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
 
         // Medianos apskaiciavimas
         if (choice == 'y')
         {
-            double galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
-            grupe[i].galutinis.push_back(galutinisMed);
+            grupe[i].galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
         }
     }
 
@@ -132,11 +130,13 @@ int main()
         cout << "/ " << setw(20) << "Galutinis (Med.)";
     cout << endl
          << string(75, '-') << endl;
+         
     for (auto &i : grupe)
     {
         cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
-        for (auto j : i.galutinis)
-            cout << j;
+        cout << i.galutinisVid << " ";
+        if (choice == 'y')
+            cout << i.galutinisMed << " ";
         cout << endl;
     }
 

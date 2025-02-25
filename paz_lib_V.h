@@ -31,7 +31,8 @@ struct stud_struct
     string var, pav;
     vector<int> paz;
     int egz;
-    vector<double> galutinis;
+    double galutinisVid;
+    double galutinisMed;
 };
 
 stud_struct temp;
