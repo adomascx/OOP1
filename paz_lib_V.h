@@ -25,7 +25,9 @@ using std::istringstream;
 
 #include <fstream>
 using std::ifstream;
-using std:: ofstream;
+using std::ofstream;
+
+#include <conio.h>
 
 static const int N = 32;                          // sugeneruotų pažymių skaičius
 static const char input_file[] = "kursiokai.txt"; // failo, iš kurio įvedami duomenys, pavadinimas

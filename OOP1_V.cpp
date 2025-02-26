@@ -128,6 +128,8 @@ int main()
 
         nd_count -= 3;
 
+        cout << "Ivedami duomenys..." << endl;
+
         while (getline(fd, line))
         {
             istringstream iss(line);
@@ -153,6 +155,8 @@ int main()
             cout << "Failas tuscias arba netinkamo formato!" << endl;
             return 1;
         }
+        else
+            cout << "Failas ivestas sekmingai.";
         break;
     }
 
@@ -165,7 +169,10 @@ int main()
     }
 
     cout << "\nAr norite taip pat skaiciuoti mediana?   y/n: ";
-    cin >> choice;
+    char choice_mediana;
+    cin >> choice_mediana;
+
+    cout << "Skaiciuojami balai..." << endl;
 
     // Galutinio rezultato apskaiciavimas
     for (int i = 0; i < k; i++)
@@ -174,15 +181,50 @@ int main()
         grupe[i].galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
 
         // Medianos apskaiciavimas
-        if (choice == 'y')
+        if (choice_mediana == 'y')
         {
             grupe[i].galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
         }
     }
 
+    cout << endl
+         << "Kaip norite rusiuoti studentu rezultatus?: " << endl
+         << "1 - Pagal varda" << endl
+         << "2 - Pagal pavarde" << endl
+         << "3 - Pagal galutini rezultata (vidurkis)" << endl
+         << "4 - Pagal galutini rezultata (mediana)" << endl
+         << "5 - Nerusiuoti rezultatu" << endl;
+    cin >> choice;
+
+    switch (choice)
+    {
+    case '1':
+        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+             { return a.var < b.var; });
+        break;
+
+    case '2':
+        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+             { return a.pav < b.pav; });
+        break;
+
+    case '3':
+        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+             { return a.galutinisVid < b.galutinisVid; });
+        break;
+
+    case '4':
+        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+             { return a.galutinisMed < b.galutinisMed; });
+        break;
+
+    case '5':
+        break;
+    }
+
     // Formatuotas Isvedimas
     cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
-    if (choice == 'y')
+    if (choice_mediana == 'y')
         cout << "/ " << setw(20) << "Galutinis (Med.)";
     cout << endl
          << string(75, '-') << endl;
@@ -191,10 +233,13 @@ int main()
     {
         cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
         cout << i.galutinisVid << " ";
-        if (choice == 'y')
+        if (choice_mediana == 'y')
             cout << i.galutinisMed << " ";
         cout << endl;
     }
+
+    cout << endl << "Spauskite bet koki klavisa";
+    getch();
 
     return 0;
 }
