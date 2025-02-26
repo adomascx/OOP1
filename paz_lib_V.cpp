@@ -14,20 +14,25 @@ double vidurkis(int i)
 int mediana(int i)
 {
     int med{};
-    int j;
+    int j = grupe[i].paz.size() / 2;
 
     vector<int> sorted_paz = grupe[i].paz;
-    sort(sorted_paz.begin(), sorted_paz.end());
-
-    j = grupe[i].paz.size() / 2;
 
     if (grupe[i].paz.size() % 2 == 0)
     {
-        med = (sorted_paz[j] + sorted_paz[j + 1]) / 2;
+        nth_element(sorted_paz.begin(), sorted_paz.begin() + j, sorted_paz.end());
+        int mid1 = sorted_paz[j];
+
+        nth_element(sorted_paz.begin(), sorted_paz.begin() + j - 1, sorted_paz.end());
+        int mid2 = sorted_paz[j - 1];
+
+        med = (mid1 + mid2) / 2;
     }
     else
     {
+        std::nth_element(sorted_paz.begin(), sorted_paz.begin() + j, sorted_paz.end());
         med = sorted_paz[j];
     }
+
     return med;
 }
