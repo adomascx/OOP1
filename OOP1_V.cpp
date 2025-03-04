@@ -49,7 +49,6 @@ int main()
             cout << "Iveskite egzamino rezultata: ";
             cin >> temp.egz;
             grupe.push_back(temp);
-            k++;
 
             cout << "Ar norite toliau ivesti mokinius?  y/n: ";
             cin >> choice;
@@ -76,8 +75,7 @@ int main()
             temp.egz = rand() % 10;
 
             grupe.push_back(temp);
-
-            k++;
+            temp.paz.clear();
 
             cout << "Ar norite toliau ivesti mokinius?  y/n: ";
             cin >> choice;
@@ -93,7 +91,6 @@ int main()
         cout << "Kiek mokiniu norite sugeneruoti?: ";
         int i;
         cin >> i;
-        k = i;
         for (; i; i--)
         {
             for (int j = 0; j < N; j++)
@@ -106,6 +103,7 @@ int main()
             temp.egz = rand() % 10;
 
             grupe.push_back(temp);
+            temp.paz.clear();
         }
         break;
     }
@@ -157,12 +155,12 @@ int main()
             iss >> temp.egz;
 
             grupe.push_back(temp);
-            k++;
+            temp.paz.clear();
         }
 
         fd.close();
 
-        if (k == 0)
+        if (grupe.empty())
         {
             cout << "Failas tuscias arba netinkamo formato!" << endl;
             return 1;
@@ -189,7 +187,7 @@ int main()
     cout << "Skaiciuojami balai..." << endl;
 
     // Galutinio rezultato apskaiciavimas
-    for (int i = 0; i < k; i++)
+    for (int i = 0; i < grupe.size(); i++)
     {
         // Vidurkio apskaiciavimas
         grupe[i].galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
@@ -247,7 +245,6 @@ int main()
 
     switch (choice)
     {
-
     // I faila
     case '1':
     {

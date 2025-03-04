@@ -34,7 +34,6 @@ static const int N = 32; // sugeneruotų pažymių skaičius
 // static const char input_file[] = "kursiokai.txt"; // failo, iš kurio įvedami duomenys, pavadinimas
 static const char output_file[] = "rezultatai.txt"; // failo, į kurį išvedami rezultatų duomenys, pavadinimas
 
-int k{};     // mokinių skaičius
 char choice; // vartotojo pasirinkimas (y/n)
 int pazymys; // įvestas pažymys
 

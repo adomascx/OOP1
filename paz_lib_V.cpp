@@ -30,7 +30,7 @@ int mediana(int i)
     }
     else
     {
-        std::nth_element(sorted_paz.begin(), sorted_paz.begin() + j, sorted_paz.end());
+        nth_element(sorted_paz.begin(), sorted_paz.begin() + j, sorted_paz.end());
         med = sorted_paz[j];
     }
 
