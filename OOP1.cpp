@@ -1,5 +1,5 @@
-#include "paz_lib_V.h"
-#include "paz_lib_V.cpp"
+#include "paz_lib.h"
+#include "paz_lib.cpp"
 
 int main()
 {
