@@ -1,4 +1,4 @@
-#include "paz_lib.h"
+#include "apdorojimas.h"
 
 double vidurkis(int i)
 {

@@ -1,5 +1,5 @@
-#include "paz_lib.h"
-#include "paz_lib.cpp"
+#include "main_lib.h"
+#include "apdorojimas.h"
 
 int main()
 {
@@ -12,7 +12,11 @@ int main()
          << "3 - generuoti studentu vardus IR pazymius" << endl
          << "4 - ivesti duomenis is failo" << endl
          << "5 - baigti darba" << endl;
+    char choice; // vartotojo pasirinkimas
     cin >> choice;
+
+    stud_struct temp; // laikinas įvedimo masyvas
+    int pazymys;      // įvestas temp pažymys
 
     switch (choice)
     {
