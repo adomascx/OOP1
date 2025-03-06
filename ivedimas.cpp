@@ -1,8 +1,48 @@
 #include "ivedimas.h"
 
+void mok_ivedimas(stud_struct &temp)
+{
+    cout << "Iveskite mokinio varda: ";
+    cin >> temp.var;
+    if (!cin)
+        throw runtime_error("Netinkamai ivestas vardas. Bandykite vel");
+
+    cout << "Iveskite mokinio pavarde: ";
+    cin >> temp.pav;
+    if (!cin)
+        throw runtime_error("Netinkamai ivesta pavarde. Bandykite vel");
+}
+
+void paz_ivedimas(stud_struct &temp)
+{
+    while (true)
+    {
+        int pazymys{};
+        cout << "Iveskite mokinio pazymi (0, jei daugiau pazymiu nera): ";
+        cin >> pazymys;
+        if (!cin || pazymys > 10)
+            throw runtime_error("Netinkamas pazymys. Pasirinkite skaiciu nuo 1 iki 10");
+
+        if (pazymys)
+            temp.paz.push_back(pazymys);
+        else
+            break;
+    }
+
+    if (temp.paz.empty())
+    {
+        throw runtime_error("Nera ivestu pazymiu. Prasome ivesti bent viena pazymi.");
+    }
+
+    cout << "Iveskite egzamino rezultata: ";
+    cin >> temp.egz;
+    if (!cin || temp.egz > 10)
+        throw runtime_error("Netinkamas egzamino balas. Pasirinkite skaiciu nuo 1 iki 10");
+}
+
 void gen_paz(stud_struct &temp)
 {
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < 32; i++)
     {
         temp.paz.push_back(rand() % 10);
     }
@@ -21,7 +61,7 @@ void failo_ivedimas()
     cin >> input_file;
     ifstream fd(input_file);
 
-        if (!fd)
+    if (!fd)
     {
         throw runtime_error("Nepavyko atidaryti ivedimo failo");
     }

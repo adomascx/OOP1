@@ -1,6 +1,7 @@
 #include "main_lib.h"
 #include "apdorojimas.h"
 #include "ivedimas.h"
+#include "isvedimas.h"
 
 int main()
 {
@@ -16,9 +17,7 @@ int main()
     char choice; // vartotojo pasirinkimas
     cin >> choice;
 
-    // TODO: palikti *tik* funkcijose
     stud_struct temp; // laikinas įvedimo masyvas
-    int pazymys;      // įvestas temp pažymys
 
     try
     {
@@ -30,44 +29,12 @@ int main()
         {
             while (true)
             {
+                mok_ivedimas(temp);
+                paz_ivedimas(temp);
 
-                cout << "Iveskite mokinio varda: ";
-                cin >> temp.var;
-                if (!cin)
-                    throw runtime_error("Netinkamai ivestas vardas. Bandykite vel");
-
-                cout << "Iveskite mokinio pavarde: ";
-                cin >> temp.pav;
-                if (!cin)
-                    throw runtime_error("Netinkamai ivesta pavarde. Bandykite vel");
-
-                while (true)
-                {
-                    pazymys = 0;
-                    cout << "Iveskite mokinio pazymi (0, jei daugiau pazymiu nera): ";
-                    cin >> pazymys;
-                    if (!cin || pazymys > 10)
-                        throw runtime_error("Netinkamas pazymys. Pasirinkite skaiciu nuo 1 iki 10");
-
-                    if (pazymys)
-                        temp.paz.push_back(pazymys);
-                    else
-                        break;
-                }
-
-                // Patikrinti, ar naudotojas ivede pazymiu
-                // Jei ne, baigti programa
-                if (temp.paz.empty())
-                {
-                    throw runtime_error("Nera ivestu pazymiu. Prasome ivesti bent viena pazymi.");
-                }
-
-                cout << "Iveskite egzamino rezultata: ";
-                cin >> temp.egz;
-                if (!cin || temp.egz > 10)
-                    throw runtime_error("Netinkamas egzamino balas. Pasirinkite skaiciu nuo 1 iki 10");
                 grupe.push_back(temp);
 
+                // ar kartoti ivedimo/generavimo cikla?
                 cout << "Ar norite toliau ivesti mokinius?  y/n: ";
                 cin >> choice;
                 if (choice == 'n')
@@ -83,16 +50,7 @@ int main()
         {
             while (true)
             {
-                // vardo/pavardes ivedimas
-                cout << "Iveskite mokinio varda: ";
-                cin >> temp.var;
-                if (!cin)
-                    throw runtime_error("Netinkamai ivestas vardas. Bandykite vel");
-
-                cout << "Iveskite mokinio pavarde: ";
-                cin >> temp.pav;
-                if (!cin)
-                    throw runtime_error("Netinkamai ivesta pavarde. Bandykite vel");
+                mok_ivedimas(temp);
 
                 // pazymiu generavimas
                 gen_paz(temp);
@@ -100,7 +58,7 @@ int main()
                 grupe.push_back(temp);
                 temp.paz.clear();
 
-                // testi boolean
+                // ar kartoti ivedimo/generavimo cikla?
                 cout << "Ar norite toliau ivesti mokinius?  y/n: ";
                 cin >> choice;
                 if (choice == 'n')
@@ -156,13 +114,13 @@ int main()
             throw runtime_error("Netinkamas pasirinkimas. Pasirinkite skaiciu nuo 1 iki 5");
         }
     }
-
     catch (runtime_error &e)
     {
         cout << "Klaida: " << e.what() << endl;
         return 1;
     }
 
+    // medianos pasirinkimas
     char choice_mediana;
     try
     {
@@ -173,7 +131,6 @@ int main()
             throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
         }
     }
-
     catch (runtime_error &e)
     {
         cout << "Klaida: " << e.what() << endl;
@@ -185,10 +142,8 @@ int main()
     // Galutinio rezultato apskaiciavimas
     for (int i = 0; i < grupe.size(); i++)
     {
-        // Vidurkio apskaiciavimas
         grupe[i].galutinisVid = vidurkis_gal(i);
 
-        // Medianos apskaiciavimas
         if (choice_mediana == 'y')
         {
             grupe[i].galutinisMed = mediana_gal(i);
@@ -252,49 +207,21 @@ int main()
     {
         switch (choice)
         {
-        // I faila
+            // I faila
         case '1':
         {
             ofstream fr(output_file);
             if (!fr)
                 throw runtime_error("Nepavyko atidaryti isvedimo failo");
 
-            // Formatuotas Išvedimas
-            fr << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
-            if (choice_mediana == 'y')
-                fr << "/ " << setw(20) << "Galutinis (Med.)";
-            fr << endl
-               << string(75, '-') << endl;
-
-            for (auto &i : grupe)
-            {
-                fr << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
-                fr << i.galutinisVid << " ";
-                if (choice_mediana == 'y')
-                    fr << i.galutinisMed << " ";
-                fr << endl;
-            }
+            rez_isvedimas(fr, choice_mediana, grupe);
             break;
         }
 
         // I ekrana
         case '2':
         {
-            // Formatuotas Išvedimas
-            cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
-            if (choice_mediana == 'y')
-                cout << "/ " << setw(20) << "Galutinis (Med.)";
-            cout << endl
-                 << string(75, '-') << endl;
-
-            for (auto &i : grupe)
-            {
-                cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
-                cout << i.galutinisVid << " ";
-                if (choice_mediana == 'y')
-                    cout << i.galutinisMed << " ";
-                cout << endl;
-            }
+            rez_isvedimas(cout, choice_mediana, grupe);
             break;
         }
         default:
@@ -306,11 +233,6 @@ int main()
         cout << "Klaida: " << e.what() << endl;
         return 1;
     }
-
-    // "Press any key", jei programa paleidžiama ne IDE aplinkoje
-    cout << endl
-         << "Spauskite bet koki klavisa...";
-    getch();
 
     return 0;
 }

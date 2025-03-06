@@ -10,6 +10,7 @@ using std::vector;
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ostream;
 
 #include <iomanip>
 using std::fixed;
@@ -33,8 +34,6 @@ using std::ofstream;
 
 #include <conio.h>
 
-static const int N = 32; // sugeneruotų pažymių skaičius
-// static const char input_file[] = "kursiokai.txt"; // failo, iš kurio įvedami duomenys, pavadinimas
 static const char output_file[] = "rezultatai.txt"; // failo, į kurį išvedami rezultatų duomenys, pavadinimas
 
 struct stud_struct
