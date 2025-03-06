@@ -1,5 +1,8 @@
 #pragma once
 
+#include <stdexcept>
+using std::runtime_error;
+
 #include <vector>
 using std::vector;
 

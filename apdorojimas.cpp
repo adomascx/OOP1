@@ -36,3 +36,13 @@ int mediana(int i)
 
     return med;
 }
+
+double vidurkis_gal(int i)
+{
+    return (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
+}
+
+double mediana_gal(int i)
+{
+    return (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
+}

@@ -1,5 +1,6 @@
 #include "main_lib.h"
 #include "apdorojimas.h"
+#include "ivedimas.h"
 
 int main()
 {
@@ -15,178 +16,169 @@ int main()
     char choice; // vartotojo pasirinkimas
     cin >> choice;
 
+    // TODO: palikti *tik* funkcijose
     stud_struct temp; // laikinas įvedimo masyvas
     int pazymys;      // įvestas temp pažymys
 
-    switch (choice)
+    try
     {
-
-    // ranka
-    case '1':
-    {
-        while (true)
+        switch (choice)
         {
-            cout << "Iveskite mokinio varda: ";
-            cin >> temp.var;
-            cout << "Iveskite mokinio pavarde: ";
-            cin >> temp.pav;
 
+        // ranka
+        case '1':
+        {
             while (true)
             {
-                pazymys = 0;
-                cout << "Iveskite mokinio pazymi (0, jei daugiau pazymiu nera): ";
-                cin >> pazymys;
-                if (pazymys)
-                    temp.paz.push_back(pazymys);
-                else
+
+                cout << "Iveskite mokinio varda: ";
+                cin >> temp.var;
+                if (!cin)
+                    throw runtime_error("Netinkamai ivestas vardas. Bandykite vel");
+
+                cout << "Iveskite mokinio pavarde: ";
+                cin >> temp.pav;
+                if (!cin)
+                    throw runtime_error("Netinkamai ivesta pavarde. Bandykite vel");
+
+                while (true)
+                {
+                    pazymys = 0;
+                    cout << "Iveskite mokinio pazymi (0, jei daugiau pazymiu nera): ";
+                    cin >> pazymys;
+                    if (!cin || pazymys > 10)
+                        throw runtime_error("Netinkamas pazymys. Pasirinkite skaiciu nuo 1 iki 10");
+
+                    if (pazymys)
+                        temp.paz.push_back(pazymys);
+                    else
+                        break;
+                }
+
+                // Patikrinti, ar naudotojas ivede pazymiu
+                // Jei ne, baigti programa
+                if (temp.paz.empty())
+                {
+                    throw runtime_error("Nera ivestu pazymiu. Prasome ivesti bent viena pazymi.");
+                }
+
+                cout << "Iveskite egzamino rezultata: ";
+                cin >> temp.egz;
+                if (!cin || temp.egz > 10)
+                    throw runtime_error("Netinkamas egzamino balas. Pasirinkite skaiciu nuo 1 iki 10");
+                grupe.push_back(temp);
+
+                cout << "Ar norite toliau ivesti mokinius?  y/n: ";
+                cin >> choice;
+                if (choice == 'n')
                     break;
+                else if (!cin || choice != 'y')
+                    throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
             }
-
-            // Patikrinti, ar naudotojas ivede pazymiu
-            // Jei ne, baigti programa
-            if (temp.paz.empty())
-            {
-                cout << "Nera ivestu pazymiu. Prasome ivesti bent viena pazymi." << endl;
-                return 1;
-            }
-
-            cout << "Iveskite egzamino rezultata: ";
-            cin >> temp.egz;
-            grupe.push_back(temp);
-
-            cout << "Ar norite toliau ivesti mokinius?  y/n: ";
-            cin >> choice;
-            if (choice == 'n')
-                break;
+            break;
         }
-        break;
+
+        // generuoti TIK pazymius
+        case '2':
+        {
+            while (true)
+            {
+                // vardo/pavardes ivedimas
+                cout << "Iveskite mokinio varda: ";
+                cin >> temp.var;
+                if (!cin)
+                    throw runtime_error("Netinkamai ivestas vardas. Bandykite vel");
+
+                cout << "Iveskite mokinio pavarde: ";
+                cin >> temp.pav;
+                if (!cin)
+                    throw runtime_error("Netinkamai ivesta pavarde. Bandykite vel");
+
+                // pazymiu generavimas
+                gen_paz(temp);
+
+                grupe.push_back(temp);
+                temp.paz.clear();
+
+                // testi boolean
+                cout << "Ar norite toliau ivesti mokinius?  y/n: ";
+                cin >> choice;
+                if (choice == 'n')
+                    break;
+                else if (choice != 'y' && choice != 'n')
+                    throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
+            }
+            break;
+        }
+
+        // generuoti studentu vardus IR pazymius
+        case '3':
+        {
+            cout << "Kiek mokiniu norite sugeneruoti?: ";
+            int i;
+            cin >> i;
+            if (!cin || i == 0)
+                throw runtime_error("Netinkamas pasirinkimas. Pasirinkite skaiciu nuo 1 iki 2147483647");
+            for (; i > 0; i--)
+            {
+                // vardu/pavardziu generavimas
+                temp.var = vardas[rand() % 16];
+                temp.pav = pavarde[rand() % 16];
+
+                // pazymiu generavimas
+                gen_paz(temp);
+
+                grupe.push_back(temp);
+                temp.paz.clear();
+            }
+            break;
+        }
+
+        // ivesti duomenis is failo
+        case '4':
+        {
+            failo_ivedimas();
+
+            if (grupe.empty())
+            {
+                throw runtime_error("Failas tuscias arba netinkamo formato!");
+            }
+            else
+                cout << "Failas ivestas sekmingai.";
+            break;
+        }
+
+        // baigti darba
+        case '5':
+            return 0;
+
+        default:
+            throw runtime_error("Netinkamas pasirinkimas. Pasirinkite skaiciu nuo 1 iki 5");
+        }
     }
 
-    // generuoti TIK pazymius
-    case '2':
+    catch (runtime_error &e)
     {
-        while (true)
-        {
-            cout << "Iveskite mokinio varda: ";
-            cin >> temp.var;
-            cout << "Iveskite mokinio pavarde: ";
-            cin >> temp.pav;
-
-            for (int i = 0; i < N; i++)
-            {
-                temp.paz.push_back(rand() % 10);
-            }
-            temp.egz = rand() % 10;
-
-            grupe.push_back(temp);
-            temp.paz.clear();
-
-            cout << "Ar norite toliau ivesti mokinius?  y/n: ";
-            cin >> choice;
-            if (choice == 'n')
-                break;
-        }
-        break;
-    }
-
-    // generuoti studentu vardus IR pazymius
-    case '3':
-    {
-        cout << "Kiek mokiniu norite sugeneruoti?: ";
-        int i;
-        cin >> i;
-        for (; i; i--)
-        {
-            for (int j = 0; j < N; j++)
-            {
-                temp.paz.push_back(rand() % 10);
-            }
-
-            temp.var = vardas[rand() % 16];
-            temp.pav = pavarde[rand() % 16];
-            temp.egz = rand() % 10;
-
-            grupe.push_back(temp);
-            temp.paz.clear();
-        }
-        break;
-    }
-
-    // ivesti duomenis is failo
-    case '4':
-    {
-        string line, word, input_file;
-
-        // Įvedimo failo atidarymas
-        cout << "Iveskite failo pavadinima: " << endl;
-        cin >> input_file;
-        ifstream fd(input_file);
-
-        if (!fd)
-        {
-            cout << "Nepavyko atidaryti failo. " << endl;
-            return 1;
-        }
-
-        // ND kiekio radimas pagal antraštę
-        getline(fd, line);
-        istringstream antraste(line);
-
-        int nd_count{};
-        while (antraste >> word)
-        {
-            nd_count++;
-        }
-
-        // Galutinis ND numeris (atemus varda, pavarder ir egz. bala)
-        nd_count -= 3;
-
-        cout << "Ivedami duomenys..." << endl;
-
-        // Duomenų įvedimas iš failo
-        while (getline(fd, line))
-        {
-            istringstream iss(line);
-
-            iss >> temp.var >> temp.pav;
-
-            for (int i = 0; i < nd_count; i++)
-            {
-                iss >> pazymys;
-                temp.paz.push_back(pazymys);
-            }
-
-            iss >> temp.egz;
-
-            grupe.push_back(temp);
-            temp.paz.clear();
-        }
-
-        fd.close();
-
-        if (grupe.empty())
-        {
-            cout << "Failas tuscias arba netinkamo formato!" << endl;
-            return 1;
-        }
-        else
-            cout << "Failas ivestas sekmingai.";
-        break;
-    }
-
-    // baigti darba
-    case '5':
-        return 0;
-
-    // error handling
-    default:
-        cout << "Netinkamas pasirinkimas. Pasirinkite skaiciu nuo 1 iki 4" << endl;
+        cout << "Klaida: " << e.what() << endl;
         return 1;
     }
 
-    cout << "\nAr norite taip pat skaiciuoti mediana?   y/n: ";
     char choice_mediana;
-    cin >> choice_mediana;
+    try
+    {
+        cout << "\nAr norite taip pat skaiciuoti mediana?   y/n: ";
+        cin >> choice_mediana;
+        if (choice_mediana != 'y' && choice_mediana != 'n')
+        {
+            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
+        }
+    }
+
+    catch (runtime_error &e)
+    {
+        cout << "Klaida: " << e.what() << endl;
+        return 1;
+    }
 
     cout << "Skaiciuojami balai..." << endl;
 
@@ -194,14 +186,12 @@ int main()
     for (int i = 0; i < grupe.size(); i++)
     {
         // Vidurkio apskaiciavimas
-        grupe[i].galutinisVid = (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
-        // cout << endl << "Skaiciuojamas" << i << "vidurkis";
+        grupe[i].galutinisVid = vidurkis_gal(i);
 
         // Medianos apskaiciavimas
         if (choice_mediana == 'y')
         {
-            // cout << endl << "Skaiciuojama" << i << "mediana";
-            grupe[i].galutinisMed = (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
+            grupe[i].galutinisMed = mediana_gal(i);
         }
     }
 
@@ -215,30 +205,41 @@ int main()
     cin >> choice;
 
     // Duomenų rūšiavimo algoritmai
-    switch (choice)
+    try
     {
-    case '1':
-        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-             { return a.var < b.var; });
-        break;
+        switch (choice)
+        {
+        case '1':
+            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+                 { return a.var < b.var; });
+            break;
 
-    case '2':
-        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-             { return a.pav < b.pav; });
-        break;
+        case '2':
+            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+                 { return a.pav < b.pav; });
+            break;
 
-    case '3':
-        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-             { return a.galutinisVid > b.galutinisVid; });
-        break;
+        case '3':
+            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+                 { return a.galutinisVid > b.galutinisVid; });
+            break;
 
-    case '4':
-        sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-             { return a.galutinisMed > b.galutinisMed; });
-        break;
+        case '4':
+            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+                 { return a.galutinisMed > b.galutinisMed; });
+            break;
 
-    case '5':
-        break;
+        case '5':
+            break;
+
+        default:
+            throw runtime_error("Netinkamas pasirinkimas. Pasirinkite skaiciu nuo 1 iki 5");
+        }
+    }
+    catch (runtime_error &e)
+    {
+        cout << "Klaida: " << e.what() << endl;
+        return 1;
     }
 
     cout << endl
@@ -247,51 +248,63 @@ int main()
          << "2 - I ekrana" << endl;
     cin >> choice;
 
-    switch (choice)
+    try
     {
-    // I faila
-    case '1':
-    {
-        ofstream fr(output_file);
-
-        // Formatuotas Išvedimas
-        fr << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
-        if (choice_mediana == 'y')
-            fr << "/ " << setw(20) << "Galutinis (Med.)";
-        fr << endl
-           << string(75, '-') << endl;
-
-        for (auto &i : grupe)
+        switch (choice)
         {
-            fr << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
-            fr << i.galutinisVid << " ";
-            if (choice_mediana == 'y')
-                fr << i.galutinisMed << " ";
-            fr << endl;
-        }
-        break;
-    }
-
-    // I ekrana
-    case '2':
-    {
-        // Formatuotas Išvedimas
-        cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
-        if (choice_mediana == 'y')
-            cout << "/ " << setw(20) << "Galutinis (Med.)";
-        cout << endl
-             << string(75, '-') << endl;
-
-        for (auto &i : grupe)
+        // I faila
+        case '1':
         {
-            cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
-            cout << i.galutinisVid << " ";
+            ofstream fr(output_file);
+            if (!fr)
+                throw runtime_error("Nepavyko atidaryti isvedimo failo");
+
+            // Formatuotas Išvedimas
+            fr << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
             if (choice_mediana == 'y')
-                cout << i.galutinisMed << " ";
-            cout << endl;
+                fr << "/ " << setw(20) << "Galutinis (Med.)";
+            fr << endl
+               << string(75, '-') << endl;
+
+            for (auto &i : grupe)
+            {
+                fr << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
+                fr << i.galutinisVid << " ";
+                if (choice_mediana == 'y')
+                    fr << i.galutinisMed << " ";
+                fr << endl;
+            }
+            break;
         }
-        break;
+
+        // I ekrana
+        case '2':
+        {
+            // Formatuotas Išvedimas
+            cout << setw(15) << left << "Vardas" << setw(15) << "Pavarde" << setw(18) << "Galutinis (Vid.)";
+            if (choice_mediana == 'y')
+                cout << "/ " << setw(20) << "Galutinis (Med.)";
+            cout << endl
+                 << string(75, '-') << endl;
+
+            for (auto &i : grupe)
+            {
+                cout << setw(15) << left << i.var << setw(15) << i.pav << fixed << setprecision(3) << setw(20);
+                cout << i.galutinisVid << " ";
+                if (choice_mediana == 'y')
+                    cout << i.galutinisMed << " ";
+                cout << endl;
+            }
+            break;
+        }
+        default:
+            throw runtime_error("Netinkamas pasirinkimas. Pasirinkite 1 arba 2");
+        }
     }
+    catch (runtime_error &e)
+    {
+        cout << "Klaida: " << e.what() << endl;
+        return 1;
     }
 
     // "Press any key", jei programa paleidžiama ne IDE aplinkoje
