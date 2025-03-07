@@ -13,25 +13,15 @@ int main()
     cin >> choice;
     if (choice == 'y')
     {
-        string generated_file;
-        int dydis;
-        cout << "Iveskite failo pavadinima ir norima dydi";
         try
         {
-            cin >> generated_file;
-            if (!cin)
-                throw runtime_error("Netinkamas failo pavadinimas.");
-            cin >> dydis;
-            if (!cin)
-                throw runtime_error("Netinkamas failo dydis. Pasirinkite skaiciu nuo 1 iki 2147483647");
+            failo_generavimas();
         }
         catch (runtime_error &e)
         {
             cout << "Klaida: " << e.what() << endl;
             return 1;
         }
-
-        
     }
     else if (choice != 'y' && choice != 'n')
         throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");

@@ -56,7 +56,6 @@ Norėdami surinkti visus projektą sudarančius failus naujame PC naudojant Visu
                    "${workspaceFolder}\\ivedimas.cpp",
                    "${workspaceFolder}\\isvedimas.cpp",
                    "${workspaceFolder}\\main_lib.cpp",
-                   "${workspaceFolder}\\paz_lib.cpp",
                    "-o",
                    "${workspaceFolder}\\OOP1.exe"
                ],
