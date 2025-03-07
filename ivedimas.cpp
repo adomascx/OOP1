@@ -1,5 +1,4 @@
 #include "ivedimas.h"
-#include "apdorojimas.h"
 
 void mok_ivedimas(stud_struct &temp)
 {

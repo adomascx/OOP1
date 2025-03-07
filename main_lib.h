@@ -60,3 +60,6 @@ extern time_point<high_resolution_clock> start_time;
 
 extern string vardas[];
 extern string pavarde[];
+
+void timer_prad();
+void timer_pab();

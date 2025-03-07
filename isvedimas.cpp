@@ -1,5 +1,4 @@
 #include "isvedimas.h"
-#include "apdorojimas.h"
 
 void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> &grupe)
 {
@@ -25,9 +24,9 @@ void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> 
 
 void failo_generavimas()
 {
-    
-    string gen_file;
+    string gen_file; // generuojamo failo pavadinimas
     int dydis, paz_sk;
+
     cout << "Iveskite mokiniu kieki: " << endl;
     cin >> dydis;
     if (!cin)
@@ -63,5 +62,14 @@ void failo_generavimas()
         }
         fr << endl;
     }
+    fr.close();
+
     timer_pab();
+}
+
+void diskriminacija(string file_name)
+{
+    
+
+    
 }
