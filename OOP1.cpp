@@ -6,15 +6,43 @@
 int main()
 {
     srand(time(NULL));
+    char choice; // vartotojo pasirinkimas
 
-    // Ivedimas
+    // Failo generavimo pasirinkimas
+    cout << "Ar norite sugeneruoti studentų failą?  y/n: ";
+    cin >> choice;
+    if (choice == 'y')
+    {
+        string generated_file;
+        int dydis;
+        cout << "Iveskite failo pavadinima ir norima dydi";
+        try
+        {
+            cin >> generated_file;
+            if (!cin)
+                throw runtime_error("Netinkamas failo pavadinimas.");
+            cin >> dydis;
+            if (!cin)
+                throw runtime_error("Netinkamas failo dydis. Pasirinkite skaiciu nuo 1 iki 2147483647");
+        }
+        catch (runtime_error &e)
+        {
+            cout << "Klaida: " << e.what() << endl;
+            return 1;
+        }
+
+        
+    }
+    else if (choice != 'y' && choice != 'n')
+        throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
+
+    // Pagrindinis meniu
     cout << "Kaip norite ivesti pazymius/studentu vardus?:" << endl
          << "1 - ranka" << endl
          << "2 - generuoti TIK pazymius" << endl
          << "3 - generuoti studentu vardus IR pazymius" << endl
          << "4 - ivesti duomenis is failo" << endl
          << "5 - baigti darba" << endl;
-    char choice; // vartotojo pasirinkimas
     cin >> choice;
 
     stud_struct temp; // laikinas įvedimo masyvas
@@ -99,7 +127,7 @@ int main()
 
             if (grupe.empty())
             {
-                throw runtime_error("Failas tuscias arba netinkamo formato!");
+                throw runtime_error("Failas tuscias arba netinkamo formato.");
             }
             else
                 cout << "Failas ivestas sekmingai.";

@@ -21,3 +21,8 @@ void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> 
         out << endl;
     }
 }
+
+void failo_generavimas()
+{
+    
+}
