@@ -29,7 +29,7 @@
   - Interaktyvus meniu su pasirinkimais.
   - Galimybė tęsti įvedimą arba baigti programą pagal vartotojo pasirinkimą.
 
-### VSCode projektinio failo `tasks.json` konfigūracija
+## VSCode projektinio failo `tasks.json` konfigūracija
 
 Norėdami surinkti visus projektą sudarančius failus naujame PC naudojant Visual Studio Code, atlikite šiuos veiksmus:
 
