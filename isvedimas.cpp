@@ -1,4 +1,5 @@
 #include "isvedimas.h"
+#include "apdorojimas.h"
 
 void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> &grupe)
 {
@@ -24,21 +25,28 @@ void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> 
 
 void failo_generavimas()
 {
+    
     string gen_file;
-    int dydis;
+    int dydis, paz_sk;
     cout << "Iveskite mokiniu kieki: " << endl;
     cin >> dydis;
     if (!cin)
         throw runtime_error("Netinkamas mokiniu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
 
+    cout << "Iveskite pazymiu kieki: " << endl;
+    cin >> paz_sk;
+    if (!cin)
+        throw runtime_error("Netinkamas pazymiu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
+
     // failo pavadinimas formatu "studentai[N].txt"
     gen_file = "studentai" + to_string(dydis) + ".txt";
 
+    timer_prad();
     ofstream fr(gen_file);
 
     // antraste
     fr << setw(15) << left << "Vardas" << setw(15) << "Pavarde";
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < paz_sk; i++)
     {
         fr << left << setw(5) << "ND" + to_string(i + 1);
     }
@@ -49,10 +57,11 @@ void failo_generavimas()
     {
         fr << setw(15) << left << "Vardas" + to_string(i + 1)
            << setw(15) << "Pavarde" + to_string(i + 1);
-        for (int j = 0; j < 5 + 1; j++)
+        for (int j = 0; j < paz_sk + 1; j++)
         {
-            fr << left << setw(5) << rand() % 10;
+            fr << left << setw(5) << (rand() % 10) + 1;
         }
         fr << endl;
     }
+    timer_pab();
 }

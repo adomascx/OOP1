@@ -46,3 +46,21 @@ double mediana_gal(int i)
 {
     return (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
 }
+
+void timer_prad()
+{
+    if (ar_skaiciuoti_laika)
+    {
+        start_time = high_resolution_clock::now();
+    }
+}
+
+void timer_pab()
+{
+    if (ar_skaiciuoti_laika)
+    {
+        auto end_time = high_resolution_clock::now();
+        auto duration = duration_cast<milliseconds>(end_time - start_time);
+        cout << "[Operacija užtruko: " << duration.count() << " ms]" << endl;
+    }
+}

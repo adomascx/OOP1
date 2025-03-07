@@ -5,8 +5,19 @@
 
 int main()
 {
+
     srand(time(NULL));
     char choice; // vartotojo pasirinkimas
+
+    cout << "Ar norite skaiciuoti ivedimo laika?  y/n: ";
+    cin >> choice;
+    if (choice == 'y')
+    {
+        ar_skaiciuoti_laika = true;
+    }
+    else if (choice != 'y' && choice != 'n')
+        throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
+    
 
     // Failo generavimo pasirinkimas
     cout << "Ar norite sugeneruoti studentų failą?  y/n: ";

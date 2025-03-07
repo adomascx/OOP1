@@ -33,6 +33,13 @@ using std::istringstream;
 using std::ifstream;
 using std::ofstream;
 
+#include <chrono>
+using std::chrono::duration;
+using std::chrono::duration_cast;
+using std::chrono::high_resolution_clock;
+using std::chrono::milliseconds;
+using std::chrono::time_point;
+
 #include <conio.h>
 
 static const char output_file[] = "rezultatai.txt"; // failo, į kurį išvedami rezultatų duomenys, pavadinimas
@@ -47,6 +54,9 @@ struct stud_struct
 };
 
 extern vector<stud_struct> grupe;
+
+extern bool ar_skaiciuoti_laika;
+extern time_point<high_resolution_clock> start_time;
 
 extern string vardas[];
 extern string pavarde[];

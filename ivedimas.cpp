@@ -1,4 +1,5 @@
 #include "ivedimas.h"
+#include "apdorojimas.h"
 
 void mok_ivedimas(stud_struct &temp)
 {
@@ -79,6 +80,7 @@ void failo_ivedimas()
     // Galutinis ND numeris (atemus varda, pavarder ir egz. bala)
     nd_count -= 3;
 
+    timer_prad();
     cout << "Ivedami duomenys..." << endl;
 
     // Duomenų įvedimas iš failo
@@ -101,4 +103,5 @@ void failo_ivedimas()
     }
 
     fd.close();
+    timer_pab();
 }
