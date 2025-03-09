@@ -90,10 +90,13 @@ Norėdami surinkti projektą, atidarykite VSCode komandų paletę (`Ctrl+Shift+P
 Programos eiga apima duomenų įvedimą, rezultato apskaičiavimą bei spartos analizės etapų išvedimą:
 
 - **Pagrindinis meniu:**  
-  Pasirinkus atitinkamą įvedimo moduulį, vartotojas gali įvesti duomenis rankiniu būdu, sugeneruoti duomenis ar nuskaityti juos iš failo.  
+![image](https://github.com/user-attachments/assets/59b5b9f6-e997-47e4-8fdf-32f85498f852)
 
 - **Sugeneruotas studentų failas:**  
-  Programa gali sukurti failą su sugeneruotais studentų duomenimis.  
+![image](https://github.com/user-attachments/assets/62391314-923f-4ff8-94c8-9cb42682917f)
 
-- **Surūšiuotų studentų failas:**  
-  Po rezultatų apskaičiavimo ir rūšiavimo, rezultatai išvedami į atskirą failą.  
+- **Programos spartos analizė:**
+  
+  ![image](https://github.com/user-attachments/assets/f359d320-045c-41b3-83af-74726a414b2d)
+
+
