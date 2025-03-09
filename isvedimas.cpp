@@ -61,19 +61,26 @@ void diskriminacija(const vector<stud_struct> &grupe)
 
     // visas masyvas rusiuojamas is karto, taip sumazinant velesniu palyginimu sk.
     timer_prad();
+
     sort(temp.begin(), temp.end(), [](const auto &a, const auto &b)
          { return a.galutinisVid > b.galutinisVid; });
+
     timer_pab("Studentu rusiavimas");
 
-    // originalaus (isrusiuoto) masyvo nariai priskiriami naujiems pagal indeksus
+    // vektoriaus padalinimo i 2 vektorius optimizacija ( O(N^2) -> O(N) )
     timer_prad();
-    for (int i = 0; temp[i].galutinisVid >= 5; i++)
-        islaikytojai.push_back(temp[i]);
 
-    for (int i = islaikytojai.size(); i < temp.size(); i++)
-        kartotojai.push_back(temp[i]);
+    auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
+                     { return grupe.galutinisVid < 5; });
+    auto count_islaikytojai = distance(temp.begin(), i);
+    auto count_kartotojai = distance(i, temp.end());
+    islaikytojai.reserve(count_islaikytojai);
+    kartotojai.reserve(count_kartotojai);
 
+    islaikytojai.insert(islaikytojai.end(), temp.begin(), i);
+    kartotojai.insert(kartotojai.end(), i, temp.end());
     temp.clear();
+
     timer_pab("(debug) Kartotoju/Islaikytoju isdeliojimas");
 
     timer_prad();

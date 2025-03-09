@@ -21,6 +21,7 @@ using std::setw;
 #include <algorithm>
 using std::nth_element;
 using std::sort;
+using std::find_if;
 
 #include <string>
 using std::string;
