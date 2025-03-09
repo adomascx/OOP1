@@ -26,6 +26,8 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
 {
     timer_prad();
     ofstream fr(gen_file);
+    if (!fr)
+        throw runtime_error("Nepavyko sukurti " + gen_file + "failo");
 
     // antraste
     fr << setw(15) << left << "Vardas" << setw(15) << "Pavarde";
@@ -48,23 +50,35 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
     }
     fr.close();
 
-    timer_pab();
+    timer_pab("failo generavimas");
 }
 
 void diskriminacija(const vector<stud_struct> &grupe)
 {
+    vector<stud_struct> temp = grupe;
     vector<stud_struct> islaikytojai;
     vector<stud_struct> kartotojai;
 
-    sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+    // visas masyvas rusiuojamas is karto, taip sumazinant velesniu palyginimu sk.
+    timer_prad();
+    sort(temp.begin(), temp.end(), [](const auto &a, const auto &b)
          { return a.galutinisVid > b.galutinisVid; });
+    timer_pab("Studentu rusiavimas");
 
-    for (int i = 0; grupe[i].galutinisVid >= 5; i++)
-        islaikytojai.push_back(grupe[i]);
+    // originalaus (isrusiuoto) masyvo nariai priskiriami naujiems pagal indeksus
+    timer_prad();
+    for (int i = 0; temp[i].galutinisVid >= 5; i++)
+        islaikytojai.push_back(temp[i]);
 
-    for (int i = islaikytojai.size(); i < grupe.size(); i++)
-        kartotojai.push_back(grupe[i]);
+    for (int i = islaikytojai.size(); i < temp.size(); i++)
+        kartotojai.push_back(temp[i]);
 
+    temp.clear();
+    timer_pab("(debug) Kartotoju/Islaikytoju isdeliojimas");
+
+    timer_prad();
+
+    // kartotoju isvedimas i faila
     ofstream fr_k("kartotojai.txt");
     if (!fr_k)
         throw runtime_error("Nepavyko atidaryti kartotoju failo");
@@ -72,10 +86,13 @@ void diskriminacija(const vector<stud_struct> &grupe)
     rez_isvedimas(fr_k, false, kartotojai);
     fr_k.close();
 
+    // islaikytoju isvedimas i faila
     ofstream fr_i("islaikytojai.txt");
     if (!fr_i)
         throw runtime_error("Nepavyko atidaryti islaikytoju failo");
 
     rez_isvedimas(fr_i, false, islaikytojai);
     fr_i.close();
+
+    timer_pab("Kartotoju/Islaikytoju isvedimas i faila");
 }

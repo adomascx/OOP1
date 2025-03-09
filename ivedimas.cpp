@@ -102,5 +102,5 @@ void failo_ivedimas()
     }
 
     fd.close();
-    timer_pab();
+    timer_pab("Failo ivedimas");
 }

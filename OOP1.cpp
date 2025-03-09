@@ -62,7 +62,8 @@ int main()
     }
 
     // Pagrindinis meniu
-    cout << "Kaip norite ivesti pazymius/studentu vardus?:" << endl
+    cout << endl
+         << "Kaip norite ivesti pazymius/studentu vardus?:" << endl
          << "1 - ranka" << endl
          << "2 - generuoti TIK pazymius" << endl
          << "3 - generuoti studentu vardus IR pazymius" << endl
@@ -200,9 +201,10 @@ int main()
         }
     }
 
-    // diskriminavimas
+    // diskriminavimas :(
     try
     {
+        cout << "Studentai skirstomi pagal pazymius..." << endl;
         diskriminacija(grupe);
     }
     catch (runtime_error &e)
@@ -223,9 +225,6 @@ int main()
     try
     {
         cin >> choice;
-        if (choice != 'y' && choice != 'n')
-            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
-
         switch (choice)
         {
         case '1':
@@ -269,9 +268,6 @@ int main()
     try
     {
         cin >> choice;
-        if (choice != 'y' && choice != 'n')
-            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
-
         switch (choice)
         {
             // I faila

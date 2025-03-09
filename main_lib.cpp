@@ -16,12 +16,12 @@ void timer_prad()
     }
 }
 
-void timer_pab()
+void timer_pab(string operacija)
 {
     if (ar_skaiciuoti_laika)
     {
         auto end_time = high_resolution_clock::now();
         auto duration = duration_cast<milliseconds>(end_time - start_time);
-        cout << "[Operacija užtruko: " << duration.count() << " ms]" << endl;
+        cout << "[" << operacija <<" užtruko: " << duration.count() << " ms]" << endl;
     }
 }

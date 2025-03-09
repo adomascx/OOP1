@@ -63,4 +63,4 @@ extern string vardas[];
 extern string pavarde[];
 
 void timer_prad();
-void timer_pab();
+void timer_pab(string operacija);

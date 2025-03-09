@@ -1,24 +1,22 @@
 # OOP1
 
-Šis projektas yra C++ programa, skirta studentų pažymių įvedimui ir galutinio rezultato skaičiavimui.
+Šis projektas yra C++ programa, skirta studentų pažymių įvedimui ir galutinio rezultato skaičiavimui. Nuo paskutinio README atnaujinimo įdiegta papildoma funkcionalumo refinavimo versija – interaktyvus meniu, papildomi duomenų apdorojimo testai bei patobulintas laiko matavimas.
 
 ## Funkcionalumas
 
 - **Duomenų įvedimo parinktys:**
   - **Rankiniu būdu:** Įvedami studentų vardai, pavardės, pažymiai ir egzamino rezultatai.
   - **Automatinis pažymių generavimas:** Sugeneruojami tik pažymiai studentams.
-  - **Automatinis studentų vardų ir pažymių generavimas:** Sugeneruojami tiek studentų vardai/pavardės, tiek atsitiktiniai pažymiai.
-  - **Duomenų įvedimas iš failo:** Programa leidžia įvesti duomenis iš pasirinktino failo, įskaitant studentų vardus, pavardes, pažymius ir egzamino rezultatus.
+  - **Automatinis studentų vardų bijų ir pažymių generavimas:** Sugeneruojami tiek studentų vardai/pavardės, tiek atsitiktiniai pažymiai.
+  - **Duomenų įvedimas iš failo:** Programa leidžia įvesti duomenis iš pasirinktino failo.
 
 - **Galutinio rezultato apskaičiavimas:**
-  - Apskaičiuojamas galutinis rezultatas pagal pažymių vidurkį.
-  - Pasirenkama opcija apskaičiuoti ir galutinį rezultatą pagal medianą.
+  - Skaičiuojamas galutinis rezultatas pagal pažymių vidurkį.
+  - Pasirenkama opcija apskaičiuoti galutinį rezultatą pagal medianą.
 
 - **Studentų rezultatų rūšiavimas:**
-  - Rūšiavimas pagal vardą.
-  - Rūšiavimas pagal pavardę.
-  - Rūšiavimas pagal galutinį rezultatą (vidurkis).
-  - Rūšiavimas pagal galutinį rezultatą (mediana).
+  - Rūšiavimas pagal vardą, pavardę.
+  - Rūšiavimas pagal galutinį rezultatą – tiek vidurkis, tiek mediana.
   - Galimybė palikti rezultatus nerūšiuotus.
 
 - **Rezultatų išvedimas:**
@@ -26,56 +24,76 @@
   - Galimybė išvesti rezultatus į failą.
 
 - **Papildoma naudotojo sąsaja:**
-  - Interaktyvus meniu su pasirinkimais.
+  - Interaktyvus meniu su aiškaus pasirinkimų sąrašu.
   - Galimybė tęsti įvedimą arba baigti programą pagal vartotojo pasirinkimą.
 
-## VSCode projektinio failo `tasks.json` konfigūracija
+- **Papildomi pakeitimai nuo paskutinio atnaujinimo:**
+  - Patobulintas laiko matavimas operacijoms (timer funkcijos).
+  - Naujas spartos analizės modulis, skirtas išmatuoti veikimo laiką atskiriems programos žingsniams.
+  - Daugiau išplėstų klaidų pranešimų ir patikrinimų interaktyviame meniu.
 
-Norėdami surinkti visus projektą sudarančius failus naujame PC naudojant Visual Studio Code, atlikite šiuos veiksmus:
+## Kompiliavimas ir paleidimas
 
-1. **Sukurkite `.vscode` katalogą:**  
-   Projekto šakninėje direktorijoje sukurkite katalogą pavadinimu `.vscode`, jei jis dar nėra sukurtas.
+Projekto surinkimui rekomenduojama naudoti Visual Studio Code su paruoštu `tasks.json` konfigūracija.
 
-2. **Sukurkite arba atnaujinkite `tasks.json`:**  
-   `.vscode` kataloge sukurkite (arba atnaujinkite) failą `tasks.json` su tokiu turiniu:
+### VSCode projektinio failo `tasks.json` konfigūracija
 
-   ````jsonc
-   // filepath: .vscode/tasks.json
-   {
-       "version": "2.0.0",
-       "tasks": [
-           {
-               "type": "cppbuild",
-               "label": "C/C++: Surinkti visus šaltinio failus",
-               "command": "C:\\Users\\<JusuVartotojoVardas>\\mingw64\\bin\\g++.exe",
-               "args": [
-                   "-fdiagnostics-color=always",
-                   "-g",
-                   "${workspaceFolder}\\OOP1.cpp",
-                   "${workspaceFolder}\\apdorojimas.cpp",
-                   "${workspaceFolder}\\ivedimas.cpp",
-                   "${workspaceFolder}\\isvedimas.cpp",
-                   "${workspaceFolder}\\main_lib.cpp",
-                   "-o",
-                   "${workspaceFolder}\\OOP1.exe"
-               ],
-               "options": {
-                   "cwd": "${workspaceFolder}"
-               },
-               "problemMatcher": [
-                   "$gcc"
-               ],
-               "group": {
-                   "kind": "build",
-                   "isDefault": true
-               },
-               "detail": "Surinkia visus projekto failus"
-           }
-       ]
-   }
-   ````
+````jsonc
+// filepath: tasks.json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: Surinkti visus šaltinio failus",
+            "command": "C:\\Users\\<JusuVartotojoVardas>\\mingw64\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}\\OOP1.cpp",
+                "${workspaceFolder}\\apdorojimas.cpp",
+                "${workspaceFolder}\\ivedimas.cpp",
+                "${workspaceFolder}\\isvedimas.cpp",
+                "${workspaceFolder}\\main_lib.cpp",
+                "-o",
+                "${workspaceFolder}\\OOP1.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Surinkia visus projekto failus"
+        }
+    ]
+}
+````
 
-   **Pastaba:** Pakeiskite `C:\\Users\\<JusuVartotojoVardas>\\mingw64\\bin\\g++.exe` su atitinkama jūsų turima g++ vykdomąja failo vieta.
+Norėdami surinkti projektą, atidarykite VSCode komandų paletę (`Ctrl+Shift+P`), įveskite `Tasks: Run Build Task` ir pasirinkite aukščiau nurodytą užduotį.
 
-3. **Surinkite projektą:**  
-   Atidarykite VSCode komandų paletę (`Ctrl+Shift+P`), įveskite `Tasks: Run Build Task` ir pasirinkite šią užduotį, kad būtų surinktas projektas.
+## Programos spartos analizė
+| Testas                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Failų generavimas                    | 0.04s       | 0.39s        | s             | 38.93s              |
+| Duomenų nuskaitymas / Failo įvedimas | 0.01s       | 0.13s        | s             | 35.06s              |
+| Studentų rūšiavimas                  | <0.01s      | 0.1s         | s             | s              |
+| Išvestis į failą                     | 0.04s       | 0.37s        | s             | s              |
+| **Bendras programos veikimo laikas** | 0.1s        | 1s           | -s            | -s             |
+
+## Programos veikimo pavyzdžiai
+
+Programos eiga apima duomenų įvedimą, rezultato apskaičiavimą bei spartos analizės etapų išvedimą:
+
+- **Pagrindinis meniu:**  
+  Pasirinkus atitinkamą įvedimo moduulį, vartotojas gali įvesti duomenis rankiniu būdu, sugeneruoti duomenis ar nuskaityti juos iš failo.  
+
+- **Sugeneruotas studentų failas:**  
+  Programa gali sukurti failą su sugeneruotais studentų duomenimis.  
+
+- **Surūšiuotų studentų failas:**  
+  Po rezultatų apskaičiavimo ir rūšiavimo, rezultatai išvedami į atskirą failą.  
