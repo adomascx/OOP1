@@ -70,13 +70,17 @@ void diskriminacija(const vector<stud_struct> &grupe)
     // vektoriaus padalinimo i 2 vektorius optimizacija ( O(N^2) -> O(N) )
     timer_prad();
 
+    // originalaus masyvo indeksas, per kuri perskiriama
     auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
                      { return grupe.galutinisVid < 5; });
+
+    // nauji vektoriai alokuojami is anksto, kad nereiketu pertvarkyti atminties veliau
     auto count_islaikytojai = distance(temp.begin(), i);
     auto count_kartotojai = distance(i, temp.end());
     islaikytojai.reserve(count_islaikytojai);
     kartotojai.reserve(count_kartotojai);
 
+    // i naujus vektorius kopijuojami jiems priklausantys originalo nariai
     islaikytojai.insert(islaikytojai.end(), temp.begin(), i);
     kartotojai.insert(kartotojai.end(), i, temp.end());
     temp.clear();
@@ -85,7 +89,7 @@ void diskriminacija(const vector<stud_struct> &grupe)
 
     timer_prad();
 
-    // kartotoju isvedimas i faila
+    // 'kartotoju' isvedimas i faila
     ofstream fr_k("kartotojai.txt");
     if (!fr_k)
         throw runtime_error("Nepavyko atidaryti kartotoju failo");
@@ -93,7 +97,7 @@ void diskriminacija(const vector<stud_struct> &grupe)
     rez_isvedimas(fr_k, false, kartotojai);
     fr_k.close();
 
-    // islaikytoju isvedimas i faila
+    // 'islaikytoju' isvedimas i faila
     ofstream fr_i("islaikytojai.txt");
     if (!fr_i)
         throw runtime_error("Nepavyko atidaryti islaikytoju failo");

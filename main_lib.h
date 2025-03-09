@@ -59,7 +59,7 @@ extern vector<stud_struct> grupe;
 
 
 extern bool ar_skaiciuoti_laika;
-extern time_point<high_resolution_clock> start_time;
+extern time_point<high_resolution_clock> pradzios_laikas;
 
 extern string vardas[];
 extern string pavarde[];

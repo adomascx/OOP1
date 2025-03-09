@@ -18,7 +18,8 @@ int main()
         {
 
             string gen_file; // generuojamo failo pavadinimas
-            int dydis, paz_sk;
+            int dydis;       // mokiniu norimas skaicius
+            int paz_sk;      // ND norimas skaicius
 
             cout << "Iveskite mokiniu kieki: " << endl;
             cin >> dydis;
@@ -86,6 +87,7 @@ int main()
         {
             while (true)
             {
+                // vardu/pavardziu rankinis ivedimas
                 mok_ivedimas(temp);
 
                 // pazymiu generavimas
@@ -143,6 +145,7 @@ int main()
                 throw runtime_error("Nepavyko atidaryti ivedimo failo");
             }
 
+            // viso failo ivedimas i atminti
             failo_ivedimas(fd);
 
             fd.close();
@@ -170,7 +173,7 @@ int main()
         return 1;
     }
 
-    // medianos pasirinkimas
+    // medianos skaiciavimo pasirinkimas
     char choice_mediana;
     try
     {
@@ -187,7 +190,7 @@ int main()
         return 1;
     }
 
-    // Galutinio rezultato apskaiciavimas
+    // galutinio rezultato apskaiciavimas
     for (int i = 0; i < grupe.size(); i++)
     {
         grupe[i].galutinisVid = vidurkis_gal(i);
@@ -198,7 +201,7 @@ int main()
         }
     }
 
-    // diskriminavimas :(
+    // diskriminavimas (vektoriaus padalinimas i 2 dalis)
     try
     {
         cout << endl

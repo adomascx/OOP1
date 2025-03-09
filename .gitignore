@@ -2,6 +2,3 @@
 *.exe
 *.o
 *.txt
-
-#Testing
-test.cpp
