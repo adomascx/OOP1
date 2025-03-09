@@ -79,11 +79,11 @@ Norėdami surinkti projektą, atidarykite VSCode komandų paletę (`Ctrl+Shift+P
 ## Programos spartos analizė
 | Testas                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Failų generavimas                    | 0.04s       | 0.39s        | s             | 31.31s              |
-| Duomenų nuskaitymas / Failo įvedimas | 0.01s       | 0.13s        | s             | 35.16s              |
-| Studentų rūšiavimas                  | <0.01s      | 0.1s         | s             | 17.2s              |
-| Išvestis į failą                     | 0.04s       | 0.37s        | s             | s              |
-| **Bendras programos veikimo laikas** | 0.1s        | 1s           | -s            | -s             |
+| Failų generavimas                    | 0.03s       | 0.3s         | 3s            | 29.88s         |
+| Duomenų nuskaitymas / Failo įvedimas | 0.01s       | 0.13s        | 1.24s         | 12.78s         |
+| Studentų rūšiavimas                  | <0.01s      | 0.1s         | 1.38s         | 16.7s          |
+| Išvestis į failą                     | 0.03s       | 0.28s        | 2.71s         | 27s            |
+| **Bendras programos veikimo laikas** | 0.08s       | 0.82s        | 8.34s         | 86.37s         |
 
 ## Programos veikimo pavyzdžiai
 

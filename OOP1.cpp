@@ -9,25 +9,8 @@ int main()
     srand(time(NULL));
     char choice; // vartotojo pasirinkimas
 
-    cout << "Ar norite skaiciuoti ivedimo laika?  y/n: ";
-    try
-    {
-        cin >> choice;
-        if (choice == 'y')
-        {
-            ar_skaiciuoti_laika = true;
-        }
-        else
-            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
-    }
-    catch (runtime_error &e)
-    {
-        cout << "Klaida: " << e.what() << endl;
-        return 1;
-    }
-
     // Failo generavimo pasirinkimas
-    cout << "Ar norite sugeneruoti studentų failą?  y/n: ";
+    cout << "Ar norite sugeneruoti studentu faila?  y/n: " << endl;
     try
     {
         cin >> choice;
@@ -88,7 +71,7 @@ int main()
                 grupe.push_back(temp);
 
                 // ar kartoti ivedimo/generavimo cikla?
-                cout << "Ar norite toliau ivesti mokinius?  y/n: ";
+                cout << "Ar norite toliau ivesti mokinius?  y/n: " << endl;
                 cin >> choice;
                 if (choice == 'n')
                     break;
@@ -112,7 +95,7 @@ int main()
                 temp.paz.clear();
 
                 // ar kartoti ivedimo/generavimo cikla?
-                cout << "Ar norite toliau ivesti mokinius?  y/n: ";
+                cout << "Ar norite toliau ivesti mokinius?  y/n: " << endl;
                 cin >> choice;
                 if (choice == 'n')
                     break;
@@ -148,7 +131,21 @@ int main()
         // ivesti duomenis is failo
         case '4':
         {
-            failo_ivedimas();
+            // Įvedimo failo atidarymas
+            string input_file;
+            cout << endl
+                 << "Iveskite failo pavadinima: " << endl;
+            cin >> input_file;
+            ifstream fd(input_file);
+
+            if (!fd)
+            {
+                throw runtime_error("Nepavyko atidaryti ivedimo failo");
+            }
+
+            failo_ivedimas(fd);
+
+            fd.close();
 
             if (grupe.empty())
             {
@@ -177,7 +174,7 @@ int main()
     char choice_mediana;
     try
     {
-        cout << "\nAr norite taip pat skaiciuoti mediana?   y/n: ";
+        cout << "\nAr norite taip pat skaiciuoti mediana?   y/n: " << endl;
         cin >> choice_mediana;
         if (choice_mediana != 'y' && choice_mediana != 'n')
         {
@@ -204,7 +201,8 @@ int main()
     // diskriminavimas :(
     try
     {
-        cout << "Studentai skirstomi pagal pazymius..." << endl;
+        cout << endl
+             << "Studentai skirstomi pagal pazymius..." << endl;
         diskriminacija(grupe);
     }
     catch (runtime_error &e)

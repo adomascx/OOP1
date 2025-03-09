@@ -22,6 +22,6 @@ void timer_pab(string operacija)
     {
         auto end_time = high_resolution_clock::now();
         auto duration = duration_cast<milliseconds>(end_time - start_time);
-        cout << "[" << operacija <<" užtruko: " << duration.count() << " ms]" << endl;
+        cout << "[" << operacija <<" uztruko: " << duration.count() << " ms]" << endl;
     }
 }

@@ -49,25 +49,15 @@ void gen_paz(stud_struct &temp)
     temp.egz = rand() % 10;
 }
 
-void failo_ivedimas()
+void failo_ivedimas(istream &in)
 {
     stud_struct temp;
     int pazymys;
 
-    string line, word, input_file;
-
-    // Įvedimo failo atidarymas
-    cout << "Iveskite failo pavadinima: " << endl;
-    cin >> input_file;
-    ifstream fd(input_file);
-
-    if (!fd)
-    {
-        throw runtime_error("Nepavyko atidaryti ivedimo failo");
-    }
+    string line, word;
 
     // ND kiekio radimas pagal antraštę
-    getline(fd, line);
+    getline(in, line);
     istringstream antraste(line);
 
     int nd_count{};
@@ -80,10 +70,10 @@ void failo_ivedimas()
     nd_count -= 3;
 
     timer_prad();
-    cout << "Ivedami duomenys..." << endl;
+    cout << endl << "Ivedami duomenys..." << endl;
 
     // Duomenų įvedimas iš failo
-    while (getline(fd, line))
+    while (getline(in, line))
     {
         istringstream iss(line);
 
@@ -100,7 +90,6 @@ void failo_ivedimas()
         grupe.push_back(temp);
         temp.paz.clear();
     }
-
-    fd.close();
+    
     timer_pab("Failo ivedimas");
 }

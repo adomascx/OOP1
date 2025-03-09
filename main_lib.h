@@ -11,6 +11,7 @@ using std::cin;
 using std::cout;
 using std::endl;
 using std::ostream;
+using std::istream;
 
 #include <iomanip>
 using std::fixed;

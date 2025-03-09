@@ -1,0 +1,52 @@
+#include "main_lib.h"
+#include "apdorojimas.h"
+#include "ivedimas.h"
+#include "isvedimas.h"
+
+int main()
+{
+    srand(time(NULL));
+    ar_skaiciuoti_laika = true;
+    int time_total;
+
+    bool choice;
+    int dydis;
+    int paz_sk = 10;
+    string gen_file;
+
+    cout << "Iveskite failo dydi (0 jei negeneruoti): ";
+    cin >> dydis;
+    cout << endl;
+    if (dydis)
+    {
+        gen_file = "studentai" + to_string(dydis) + ".txt";
+        failo_generavimas(gen_file, paz_sk, dydis);
+    }
+
+    /*cout << "Nuskaityti ta pati faila? 1/0: ";
+    cin >> choice;
+
+    if (!choice)
+    {
+        cin >> gen_file;
+    }*/
+
+    ifstream fd(gen_file);
+    failo_ivedimas(fd);
+    fd.close();
+
+    char choice_mediana = true;
+
+    for (int i = 0; i < grupe.size(); i++)
+    {
+        grupe[i].galutinisVid = vidurkis_gal(i);
+
+        if (choice_mediana == 'y')
+        {
+            grupe[i].galutinisMed = mediana_gal(i);
+        }
+    }
+
+    cout << "Studentai skirstomi pagal pazymius..." << endl;
+    diskriminacija(grupe);
+}

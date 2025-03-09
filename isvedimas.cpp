@@ -81,7 +81,7 @@ void diskriminacija(const vector<stud_struct> &grupe)
     kartotojai.insert(kartotojai.end(), i, temp.end());
     temp.clear();
 
-    timer_pab("(debug) Kartotoju/Islaikytoju isdeliojimas");
+    timer_pab("Kartotoju/Islaikytoju isdeliojimas i 2 vektorius");
 
     timer_prad();
 
