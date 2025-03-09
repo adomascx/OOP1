@@ -10,32 +10,56 @@ int main()
     char choice; // vartotojo pasirinkimas
 
     cout << "Ar norite skaiciuoti ivedimo laika?  y/n: ";
-    cin >> choice;
-    if (choice == 'y')
+    try
     {
-        ar_skaiciuoti_laika = true;
+        cin >> choice;
+        if (choice == 'y')
+        {
+            ar_skaiciuoti_laika = true;
+        }
+        else
+            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
     }
-    else if (choice != 'y' && choice != 'n')
-        throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
-    
+    catch (runtime_error &e)
+    {
+        cout << "Klaida: " << e.what() << endl;
+        return 1;
+    }
 
     // Failo generavimo pasirinkimas
     cout << "Ar norite sugeneruoti studentų failą?  y/n: ";
-    cin >> choice;
-    if (choice == 'y')
+    try
     {
-        try
+        cin >> choice;
+        if (choice == 'y')
         {
-            failo_generavimas();
+
+            string gen_file; // generuojamo failo pavadinimas
+            int dydis, paz_sk;
+
+            cout << "Iveskite mokiniu kieki: " << endl;
+            cin >> dydis;
+            if (!cin)
+                throw runtime_error("Netinkamas mokiniu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
+
+            cout << "Iveskite pazymiu kieki: " << endl;
+            cin >> paz_sk;
+            if (!cin)
+                throw runtime_error("Netinkamas pazymiu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
+
+            // failo pavadinimas formatu "studentai[N].txt"
+            gen_file = "studentai" + to_string(dydis) + ".txt";
+
+            failo_generavimas(gen_file, paz_sk, dydis);
         }
-        catch (runtime_error &e)
-        {
-            cout << "Klaida: " << e.what() << endl;
-            return 1;
-        }
+        else if (choice != 'y' && choice != 'n')
+            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
     }
-    else if (choice != 'y' && choice != 'n')
-        throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
+    catch (runtime_error &e)
+    {
+        cout << "Klaida: " << e.what() << endl;
+        return 1;
+    }
 
     // Pagrindinis meniu
     cout << "Kaip norite ivesti pazymius/studentu vardus?:" << endl
@@ -52,7 +76,6 @@ int main()
     {
         switch (choice)
         {
-
         // ranka
         case '1':
         {
@@ -166,8 +189,6 @@ int main()
         return 1;
     }
 
-    cout << "Skaiciuojami balai..." << endl;
-
     // Galutinio rezultato apskaiciavimas
     for (int i = 0; i < grupe.size(); i++)
     {
@@ -179,6 +200,17 @@ int main()
         }
     }
 
+    // diskriminavimas
+    try
+    {
+        diskriminacija();
+    }
+    catch (runtime_error &e)
+    {
+        cout << "Klaida: " << e.what() << endl;
+        return 1;
+    }
+
     cout << endl
          << "Kaip norite rusiuoti studentu rezultatus?: " << endl
          << "1 - Pagal varda" << endl
@@ -186,11 +218,14 @@ int main()
          << "3 - Pagal galutini rezultata (vidurkis)" << endl
          << "4 - Pagal galutini rezultata (mediana)" << endl
          << "5 - Nerusiuoti rezultatu" << endl;
-    cin >> choice;
 
     // Duomenų rūšiavimo algoritmai
     try
     {
+        cin >> choice;
+        if (choice != 'y' && choice != 'n')
+            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
+
         switch (choice)
         {
         case '1':
@@ -230,10 +265,13 @@ int main()
          << "Ar norite duomenis isvesti i faila, ar i ekrana?: " << endl
          << "1 - I faila" << endl
          << "2 - I ekrana" << endl;
-    cin >> choice;
 
     try
     {
+        cin >> choice;
+        if (choice != 'y' && choice != 'n')
+            throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
+
         switch (choice)
         {
             // I faila
@@ -244,6 +282,7 @@ int main()
                 throw runtime_error("Nepavyko atidaryti isvedimo failo");
 
             rez_isvedimas(fr, choice_mediana, grupe);
+            fr.close();
             break;
         }
 

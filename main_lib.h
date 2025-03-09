@@ -54,6 +54,9 @@ struct stud_struct
 };
 
 extern vector<stud_struct> grupe;
+extern vector<stud_struct> kartotojai;
+extern vector<stud_struct> islaikytojai;
+
 
 extern bool ar_skaiciuoti_laika;
 extern time_point<high_resolution_clock> start_time;

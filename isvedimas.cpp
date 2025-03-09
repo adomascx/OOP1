@@ -22,24 +22,8 @@ void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> 
     }
 }
 
-void failo_generavimas()
+void failo_generavimas(string gen_file, int paz_sk, int dydis)
 {
-    string gen_file; // generuojamo failo pavadinimas
-    int dydis, paz_sk;
-
-    cout << "Iveskite mokiniu kieki: " << endl;
-    cin >> dydis;
-    if (!cin)
-        throw runtime_error("Netinkamas mokiniu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
-
-    cout << "Iveskite pazymiu kieki: " << endl;
-    cin >> paz_sk;
-    if (!cin)
-        throw runtime_error("Netinkamas pazymiu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
-
-    // failo pavadinimas formatu "studentai[N].txt"
-    gen_file = "studentai" + to_string(dydis) + ".txt";
-
     timer_prad();
     ofstream fr(gen_file);
 
@@ -67,9 +51,28 @@ void failo_generavimas()
     timer_pab();
 }
 
-void diskriminacija(string file_name)
+void diskriminacija()
 {
-    
+    sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+         { return a.galutinisVid > b.galutinisVid; });
 
-    
+    for (int i = 0; grupe[i].galutinisVid >= 5; i++)
+        islaikytojai.push_back(grupe[i]);
+
+    for (int i = islaikytojai.size(); i < grupe.size(); i++)
+        kartotojai.push_back(grupe[i]);
+
+    ofstream fr_k("kartotojai.txt");
+    if (!fr_k)
+        throw runtime_error("Nepavyko atidaryti kartotoju failo");
+
+    rez_isvedimas(fr_k, false, kartotojai);
+    fr_k.close();
+
+    ofstream fr_i("islaikytojai.txt");
+    if (!fr_i)
+        throw runtime_error("Nepavyko atidaryti islaikytoju failo");
+
+    rez_isvedimas(fr_i, false, islaikytojai);
+    fr_i.close();
 }
