@@ -1,8 +1,6 @@
 #include "main_lib.h"
 
 vector<stud_struct> grupe;
-vector<stud_struct> islaikytojai;
-vector<stud_struct> kartotojai;
 
 bool ar_skaiciuoti_laika = false;
 time_point<high_resolution_clock> start_time;

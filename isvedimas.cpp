@@ -51,8 +51,11 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
     timer_pab();
 }
 
-void diskriminacija()
+void diskriminacija(const vector<stud_struct> &grupe)
 {
+    vector<stud_struct> islaikytojai;
+    vector<stud_struct> kartotojai;
+
     sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
          { return a.galutinisVid > b.galutinisVid; });
 

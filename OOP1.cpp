@@ -203,7 +203,7 @@ int main()
     // diskriminavimas
     try
     {
-        diskriminacija();
+        diskriminacija(grupe);
     }
     catch (runtime_error &e)
     {
