@@ -14,10 +14,10 @@ int main()
     int paz_sk = 10;
     string gen_file;
 
-    cout << "Iveskite failo dydi (0 jei negeneruoti): ";
+    cout << "Iveskite failo dydi: ";
     cin >> dydis;
     cout << endl;
-    if (dydis)
+    /*if (dydis)
     {
         gen_file = "studentai" + to_string(dydis) + ".txt";
         failo_generavimas(gen_file, paz_sk, dydis);
@@ -28,8 +28,12 @@ int main()
 
     if (!choice)
     {
+        cout << "Failo pavadinimas: " << endl;
         cin >> gen_file;
     }
+    */
+
+    gen_file = "studentai" + to_string(dydis) + ".txt";
 
     ifstream fd(gen_file);
     failo_ivedimas(fd);
