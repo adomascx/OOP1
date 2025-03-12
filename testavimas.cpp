@@ -23,13 +23,13 @@ int main()
         failo_generavimas(gen_file, paz_sk, dydis);
     }
 
-    /*cout << "Nuskaityti ta pati faila? 1/0: ";
+    cout << "Nuskaityti ta pati faila? 1/0: ";
     cin >> choice;
 
     if (!choice)
     {
         cin >> gen_file;
-    }*/
+    }
 
     ifstream fd(gen_file);
     failo_ivedimas(fd);
@@ -48,5 +48,5 @@ int main()
     }
 
     cout << "Studentai skirstomi pagal pazymius..." << endl;
-    diskriminacija(grupe);
+    stud_isskirstymas(grupe);
 }
