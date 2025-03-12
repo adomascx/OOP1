@@ -244,9 +244,16 @@ int main()
             break;
 
         case '4':
-            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-                 { return a.galutinisMed > b.galutinisMed; });
-            break;
+            if (choice_mediana == 'y')
+            {
+                sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
+                     { return a.galutinisMed > b.galutinisMed; });
+                break;
+            }
+            else
+            {
+                throw runtime_error("Netinkamas pasirinkimas. Mediana nebuvo skaiciuota");
+            }
 
         case '5':
             break;
