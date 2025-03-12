@@ -83,7 +83,7 @@ Norėdami surinkti projektą, atidarykite VSCode komandų paletę (`Ctrl+Shift+P
 | Duomenų nuskaitymas / Failo įvedimas | 0.01s       | 0.24s        | 2.48s         | 27.6s          |
 | Studentų rūšiavimas                  | <0.01s      | 0.15s        | 2s            | 29.4s          |
 | Išvestis į failą                     | 0.09s       | 0.88s        | 9.12s         | 112.13s        |
-| **Bendras programos veikimo laikas** | 0.13s       | 1.3s         | 16.6s         | 86.37s         |
+| **Bendras programos veikimo laikas** | 0.13s       | 1.3s         | 16.6s         | 199s         |
 
 ## Programos veikimo pavyzdžiai
 
