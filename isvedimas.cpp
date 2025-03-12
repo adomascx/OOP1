@@ -53,7 +53,7 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
     timer_pab("failo generavimas");
 }
 
-void diskriminacija(const vector<stud_struct> &grupe)
+void stud_isskirstymas(const vector<stud_struct> &grupe)
 {
     vector<stud_struct> temp = grupe;
     vector<stud_struct> islaikytojai;

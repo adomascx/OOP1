@@ -18,13 +18,13 @@ int main()
         {
 
             string gen_file; // generuojamo failo pavadinimas
-            int dydis;       // mokiniu norimas skaicius
+            int dydis;       // studentu norimas skaicius
             int paz_sk;      // ND norimas skaicius
 
-            cout << "Iveskite mokiniu kieki: " << endl;
+            cout << "Iveskite studentu kieki: " << endl;
             cin >> dydis;
             if (!cin)
-                throw runtime_error("Netinkamas mokiniu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
+                throw runtime_error("Netinkamas studentu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
 
             cout << "Iveskite pazymiu kieki: " << endl;
             cin >> paz_sk;
@@ -66,13 +66,13 @@ int main()
         {
             while (true)
             {
-                mok_ivedimas(temp);
+                stud_ivedimas(temp);
                 paz_ivedimas(temp);
 
                 grupe.push_back(temp);
 
                 // ar kartoti ivedimo/generavimo cikla?
-                cout << "Ar norite toliau ivesti mokinius?  y/n: " << endl;
+                cout << "Ar norite toliau ivesti studentus?  y/n: " << endl;
                 cin >> choice;
                 if (choice == 'n')
                     break;
@@ -88,7 +88,7 @@ int main()
             while (true)
             {
                 // vardu/pavardziu rankinis ivedimas
-                mok_ivedimas(temp);
+                stud_ivedimas(temp);
 
                 // pazymiu generavimas
                 gen_paz(temp);
@@ -97,7 +97,7 @@ int main()
                 temp.paz.clear();
 
                 // ar kartoti ivedimo/generavimo cikla?
-                cout << "Ar norite toliau ivesti mokinius?  y/n: " << endl;
+                cout << "Ar norite toliau ivesti studentus?  y/n: " << endl;
                 cin >> choice;
                 if (choice == 'n')
                     break;
@@ -110,7 +110,7 @@ int main()
         // generuoti studentu vardus IR pazymius
         case '3':
         {
-            cout << "Kiek mokiniu norite sugeneruoti?: ";
+            cout << "Kiek studentu norite sugeneruoti?: ";
             int i;
             cin >> i;
             if (!cin || i == 0)
@@ -206,7 +206,7 @@ int main()
     {
         cout << endl
              << "Studentai skirstomi pagal pazymius..." << endl;
-        diskriminacija(grupe);
+        stud_isskirstymas(grupe);
     }
     catch (runtime_error &e)
     {

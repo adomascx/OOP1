@@ -1,13 +1,13 @@
 #include "ivedimas.h"
 
-void mok_ivedimas(stud_struct &temp)
+void stud_ivedimas(stud_struct &temp)
 {
-    cout << "Iveskite mokinio varda: ";
+    cout << "Iveskite studento varda: ";
     cin >> temp.var;
     if (!cin)
         throw runtime_error("Netinkamai ivestas vardas. Bandykite vel");
 
-    cout << "Iveskite mokinio pavarde: ";
+    cout << "Iveskite studento pavarde: ";
     cin >> temp.pav;
     if (!cin)
         throw runtime_error("Netinkamai ivesta pavarde. Bandykite vel");
