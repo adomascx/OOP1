@@ -27,7 +27,7 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
     timer_prad();
     ofstream fr(gen_file);
     if (!fr)
-        throw runtime_error("Nepavyko sukurti " + gen_file + "failo");
+        throw runtime_error("Nepavyko sukurti " + gen_file + " failo");
 
     // antraste
     fr << setw(15) << left << "Vardas" << setw(15) << "Pavarde";
@@ -90,7 +90,7 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     timer_prad();
 
     // 'kartotoju' isvedimas i faila
-    ofstream fr_k("Teksto_failai/kartotojai.txt");
+    ofstream fr_k("teksto_failai/kartotojai.txt");
     if (!fr_k)
         throw runtime_error("Nepavyko atidaryti kartotoju failo");
 
@@ -98,7 +98,7 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     fr_k.close();
 
     // 'islaikytoju' isvedimas i faila
-    ofstream fr_i("Teksto_failai/islaikytojai.txt");
+    ofstream fr_i("teksto_failai/islaikytojai.txt");
     if (!fr_i)
         throw runtime_error("Nepavyko atidaryti islaikytoju failo");
 

@@ -1,17 +1,14 @@
-#include "Bibliotekos/main_lib.h"
-#include "Bibliotekos/apdorojimas.h"
-#include "Bibliotekos/ivedimas.h"
-#include "Bibliotekos/isvedimas.h"
+#include "bibliotekos/main_lib.h"
+#include "bibliotekos/apdorojimas.h"
+#include "bibliotekos/ivedimas.h"
+#include "bibliotekos/isvedimas.h"
 
 int main()
 {
     srand(69420);
     ar_skaiciuoti_laika = true;
-    int time_total;
 
-    bool choice;
     int dydis;
-    int paz_sk = 10;
     string gen_file;
 
     cout << "Iveskite failo dydi: ";
@@ -19,11 +16,13 @@ int main()
     cout << endl;
     /*if (dydis)
     {
-        gen_file = "Teksto_failai/studentai" + to_string(dydis) + ".txt";
+        int paz_sk = 10;
+        gen_file = "teksto_failai/studentai" + to_string(dydis) + ".txt";
         failo_generavimas(gen_file, paz_sk, dydis);
     }
 
     cout << "Nuskaityti ta pati faila? 1/0: ";
+        bool choice;
     cin >> choice;
 
     if (!choice)
@@ -33,7 +32,7 @@ int main()
     }
     */
 
-    gen_file = "Teksto_failai/studentai" + to_string(dydis) + ".txt";
+    gen_file = "teksto_failai/studentai" + to_string(dydis) + ".txt";
 
     ifstream fd(gen_file);
     failo_ivedimas(fd);

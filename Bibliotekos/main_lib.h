@@ -44,13 +44,7 @@ using std::chrono::time_point;
 
 #include <conio.h>
 
-#include <list>
-using std::list;
-
-#include <deque>
-using std::deque;
-
-static const char output_file[] = "Teksto_failai/rezultatai.txt"; // failo, į kurį išvedami rezultatų duomenys, direktorija/pavadinimas
+static const char output_file[] = "teksto_failai/rezultatai.txt"; // failo, į kurį išvedami rezultatų duomenys, direktorija/pavadinimas
 
 struct stud_struct
 {

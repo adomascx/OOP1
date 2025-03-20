@@ -51,17 +51,17 @@ Projekto surinkimui rekomenduojama naudoti Visual Studio Code su paruoštu `task
         {
             "type": "cppbuild",
             "label": "C/C++: Surinkti visus šaltinio failus",
-            "command": "C:\\path\\to\\g++.exe", # naudojant 'where' komanda
+            "command": "C:\\path\\to\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}\\OOP1.cpp", # jusu .cpp failo pavadinimas
-                "${workspaceFolder}\\Bibliotekos\\apdorojimas.cpp",
-                "${workspaceFolder}\\Bibliotekos\\ivedimas.cpp",
-                "${workspaceFolder}\\Bibliotekos\\isvedimas.cpp",
-                "${workspaceFolder}\\Bibliotekos\\main_lib.cpp",
+                "${workspaceFolder}\\OOP1.cpp",
+                "${workspaceFolder}\\bibliotekos\\apdorojimas.cpp",
+                "${workspaceFolder}\\bibliotekos\\ivedimas.cpp",
+                "${workspaceFolder}\\bibliotekos\\isvedimas.cpp",
+                "${workspaceFolder}\\bibliotekos\\main_lib.cpp",
                 "-o",
-                "${workspaceFolder}\\OOP1.exe" # jusu programos pavadinimas
+                "${workspaceFolder}\\build\\OOP1.exe"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"

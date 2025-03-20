@@ -6,6 +6,8 @@ time_point<high_resolution_clock> pradzios_laikas; // laiko matavimo funkcijos p
 string vardas[] = {"Adomas", "Julius", "Mantas", "Lukas", "Dominykas", "Tomas", "Jonas", "Paulius", "Dovydas", "Karolis", "Rokas", "Simonas", "Martynas", "Arnas", "Justas", "Vilius"};
 string pavarde[] = {"Kazlauskas", "Petrauskas", "Jankauskas", "Stankevicius", "Butkus", "Paulauskas", "Urbonas", "Vasiliauskas", "Lukosevicius", "Simkus", "Brazaitis", "Kavaliauskas", "Mikalauskas", "Navickas", "Rimkus", "Zukauskas"};
 
+vector<stud_struct> grupe;
+
 // laiko skaiciavimo pradzios funkcija
 void timer_prad()
 {
@@ -13,24 +15,6 @@ void timer_prad()
     {
         pradzios_laikas = high_resolution_clock::now();
     }
-}
-
-void konteinerio_pasirinkimas(char choice)
-{
-    if (choice == 'l' || choice == 'L')
-    {
-        list<stud_struct> grupe;
-    }
-    else if (choice == 'd' || choice == 'D')
-    {
-        deque<stud_struct> grupe;
-    }
-    else if (choice == 'v' || choice == 'V')
-    {
-        vector<stud_struct> grupe; // pagrindinis studentu konteineris
-    }
-    else
-        throw runtime_error("Netinkamas pasirinkimas. Bandykite vel");
 }
 
 // laiko skaiciavimo pabaigos funkcija. argumentas 'operacija' yra vykdomos operacijos pavadinimas

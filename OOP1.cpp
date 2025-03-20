@@ -1,24 +1,13 @@
-#include "Bibliotekos/main_lib.h"
-#include "Bibliotekos/apdorojimas.h"
-#include "Bibliotekos/ivedimas.h"
-#include "Bibliotekos/isvedimas.h"
+#include "bibliotekos/main_lib.h"
+#include "bibliotekos/apdorojimas.h"
+#include "bibliotekos/ivedimas.h"
+#include "bibliotekos/isvedimas.h"
 
 int main()
 {
 
     srand(69420);
     char choice; // vartotojo pasirinkimas
-    cout << "Ar norite naudoti 'list', 'deque' ar 'vector'? (L/D/V): " << endl;
-    try
-    {
-        cin >> choice;
-        konteinerio_pasirinkimas(choice);
-    }
-    catch (runtime_error &e)
-    {
-        cout << "Klaida: " << e.what() << endl;
-        return 1;
-    }
 
     // Failo generavimo pasirinkimas
     cout << "Ar norite sugeneruoti studentu faila? (y/n): " << endl;
@@ -43,7 +32,7 @@ int main()
                 throw runtime_error("Netinkamas pazymiu kiekis. Pasirinkite skaiciu nuo 1 iki 2147483647");
 
             // failo pavadinimas formatu "studentai[N].txt"
-            gen_file = "Teksto_failai/studentai" + to_string(dydis) + ".txt";
+            gen_file = "teksto_failai/studentai" + to_string(dydis) + ".txt";
 
             failo_generavimas(gen_file, paz_sk, dydis);
         }
@@ -155,7 +144,7 @@ int main()
             cin >> input_file;
 
             // atidaryti faila tinkamoje direktorijoje
-            input_file = "Teksto_failai/" + input_file;
+            input_file = "teksto_failai/" + input_file;
             ifstream fd(input_file);
 
             if (!fd)
