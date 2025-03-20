@@ -8,9 +8,20 @@ int main()
 
     srand(69420);
     char choice; // vartotojo pasirinkimas
+    cout << "Ar norite naudoti 'list', 'deque' ar 'vector'? (L/D/V): " << endl;
+    try
+    {
+        cin >> choice;
+        konteinerio_pasirinkimas(choice);
+    }
+    catch (runtime_error &e)
+    {
+        cout << "Klaida: " << e.what() << endl;
+        return 1;
+    }
 
     // Failo generavimo pasirinkimas
-    cout << "Ar norite sugeneruoti studentu faila?  y/n: " << endl;
+    cout << "Ar norite sugeneruoti studentu faila? (y/n): " << endl;
     try
     {
         cin >> choice;
@@ -36,7 +47,7 @@ int main()
 
             failo_generavimas(gen_file, paz_sk, dydis);
         }
-        else if (choice != 'y' && choice != 'n')
+        else
             throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
     }
     catch (runtime_error &e)
@@ -72,11 +83,13 @@ int main()
                 grupe.push_back(temp);
 
                 // ar kartoti ivedimo/generavimo cikla?
-                cout << "Ar norite toliau ivesti studentus?  y/n: " << endl;
+                cout << "Ar norite toliau ivesti studentus? (y/n): " << endl;
                 cin >> choice;
                 if (choice == 'n')
                     break;
-                else if (!cin || choice != 'y')
+                else if (choice == 'y')
+                    continue;
+                else
                     throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
             }
             break;
@@ -97,11 +110,13 @@ int main()
                 temp.paz.clear();
 
                 // ar kartoti ivedimo/generavimo cikla?
-                cout << "Ar norite toliau ivesti studentus?  y/n: " << endl;
+                cout << "Ar norite toliau ivesti studentus? (y/n): " << endl;
                 cin >> choice;
                 if (choice == 'n')
                     break;
-                else if (choice != 'y' && choice != 'n')
+                else if (choice == 'y')
+                    continue;
+                else
                     throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
             }
             break;
@@ -180,7 +195,7 @@ int main()
     char choice_mediana;
     try
     {
-        cout << "\nAr norite taip pat skaiciuoti mediana?   y/n: " << endl;
+        cout << "\nAr norite taip pat skaiciuoti mediana?  (y/n): " << endl;
         cin >> choice_mediana;
         if (choice_mediana != 'y' && choice_mediana != 'n')
         {
