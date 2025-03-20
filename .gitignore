@@ -1,8 +1,4 @@
 .vscode/
-*.exe
-*.o
 
+Build/*
 Teksto_failai/*
-*.txt
-
-test*
