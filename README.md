@@ -39,24 +39,24 @@ Projekto surinkimui rekomenduojama naudoti Visual Studio Code su paruoštu `task
 ### VSCode projektinio failo `tasks.json` konfigūracija
 
 ````jsonc
-// filepath: tasks.json
+// filepath: .vscode/tasks.json
 {
     "version": "2.0.0",
     "tasks": [
         {
             "type": "cppbuild",
             "label": "C/C++: Surinkti visus šaltinio failus",
-            "command": "C:\\Users\\<JusuVartotojoVardas>\\mingw64\\bin\\g++.exe",
+            "command": "C:\\path\\to\\g++.exe", # naudojant 'where' komanda
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
-                "${workspaceFolder}\\OOP1.cpp",
-                "${workspaceFolder}\\apdorojimas.cpp",
-                "${workspaceFolder}\\ivedimas.cpp",
-                "${workspaceFolder}\\isvedimas.cpp",
-                "${workspaceFolder}\\main_lib.cpp",
+                "${workspaceFolder}\\OOP1.cpp", # jusu .cpp failo pavadinimas
+                "${workspaceFolder}\\Bibliotekos\\apdorojimas.cpp",
+                "${workspaceFolder}\\Bibliotekos\\ivedimas.cpp",
+                "${workspaceFolder}\\Bibliotekos\\isvedimas.cpp",
+                "${workspaceFolder}\\Bibliotekos\\main_lib.cpp",
                 "-o",
-                "${workspaceFolder}\\OOP1.exe"
+                "${workspaceFolder}\\OOP1.exe" # jusu programos pavadinimas
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -67,8 +67,7 @@ Projekto surinkimui rekomenduojama naudoti Visual Studio Code su paruoštu `task
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "detail": "Surinkia visus projekto failus"
+            }
         }
     ]
 }

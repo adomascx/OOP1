@@ -1,6 +1,8 @@
 .vscode/
 *.exe
 *.o
+
+Teksto_failai/*
 *.txt
 
 test*

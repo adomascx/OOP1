@@ -1,11 +1,11 @@
-#include "main_lib.h"
-#include "apdorojimas.h"
-#include "ivedimas.h"
-#include "isvedimas.h"
+#include "Bibliotekos/main_lib.h"
+#include "Bibliotekos/apdorojimas.h"
+#include "Bibliotekos/ivedimas.h"
+#include "Bibliotekos/isvedimas.h"
 
 int main()
 {
-    srand(time(NULL));
+    srand(69420);
     ar_skaiciuoti_laika = true;
     int time_total;
 

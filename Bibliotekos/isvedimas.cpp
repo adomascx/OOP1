@@ -90,7 +90,7 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     timer_prad();
 
     // 'kartotoju' isvedimas i faila
-    ofstream fr_k("kartotojai.txt");
+    ofstream fr_k("Teksto_failai/kartotojai.txt");
     if (!fr_k)
         throw runtime_error("Nepavyko atidaryti kartotoju failo");
 
@@ -98,7 +98,7 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     fr_k.close();
 
     // 'islaikytoju' isvedimas i faila
-    ofstream fr_i("islaikytojai.txt");
+    ofstream fr_i("Teksto_failai/islaikytojai.txt");
     if (!fr_i)
         throw runtime_error("Nepavyko atidaryti islaikytoju failo");
 
