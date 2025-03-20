@@ -19,7 +19,7 @@ int main()
     cout << endl;
     /*if (dydis)
     {
-        gen_file = "studentai" + to_string(dydis) + ".txt";
+        gen_file = "Teksto_failai/studentai" + to_string(dydis) + ".txt";
         failo_generavimas(gen_file, paz_sk, dydis);
     }
 
@@ -33,7 +33,7 @@ int main()
     }
     */
 
-    gen_file = "studentai" + to_string(dydis) + ".txt";
+    gen_file = "Teksto_failai/studentai" + to_string(dydis) + ".txt";
 
     ifstream fd(gen_file);
     failo_ivedimas(fd);
