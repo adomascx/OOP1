@@ -2,44 +2,27 @@
 
 Šis projektas yra C++ programa, skirta studentų pažymių įvedimui ir galutinio rezultato skaičiavimui. Nuo paskutinio README atnaujinimo įdiegta papildoma funkcionalumo refinavimo versija – interaktyvus meniu, papildomi duomenų apdorojimo testai bei patobulintas laiko matavimas.
 
-## Funkcionalumas
+## Ankstesnės versijos
+- **v0.1:** Sukurtas įvedimo meniu, duomenų įvedimas ranka, vektorių bei C masyvų implementacija.
+- **v0.2:** Įdiegta duomenų įvedimo/išvedimo su failais funkcija, pagerintas medianos skaičiavimo algoritmas.
+- **v0.2.1:** Ištaisyta kritinė įvedimo klaida, pašalintas nereikalingas kintamasis.
+- **v0.3:** Atliktas pilnas refactoringas, įdiegtas išimčių valdymas, kodas suskaidytas į atskirus .cpp ir .h failus.
+- **v0.4:** Pridėtas failų generavimo funkcionalumas, studentų rūšiavimas pagal galutinį balą, įdiegta laiko matavimo sistema.
+- **v1.0:** Papildyta programa, lyginant trijų konteinerių (vector, deque, list) realizacijos spartą
 
-- **Duomenų įvedimo parinktys:**
-
-  - **Rankiniu būdu:** Įvedami studentų vardai, pavardės, pažymiai ir egzamino rezultatai.
-  - **Automatinis pažymių generavimas:** Sugeneruojami tik pažymiai studentams.
-  - **Automatinis studentų vardų bijų ir pažymių generavimas:** Sugeneruojami tiek studentų vardai/pavardės, tiek atsitiktiniai pažymiai.
-  - **Duomenų įvedimas iš failo:** Programa leidžia įvesti duomenis iš pasirinktino failo.
-
-- **Galutinio rezultato apskaičiavimas:**
-
-  - Skaičiuojamas galutinis rezultatas pagal pažymių vidurkį.
-  - Pasirenkama opcija apskaičiuoti galutinį rezultatą pagal medianą.
-
-- **Studentų rezultatų rūšiavimas:**
-
-  - Rūšiavimas pagal vardą, pavardę.
-  - Rūšiavimas pagal galutinį rezultatą – tiek vidurkis, tiek mediana.
-  - Galimybė palikti rezultatus nerūšiuotus.
-
-- **Rezultatų išvedimas:**
-
-  - Suformatuotas rezultatų išvedimas į konsolę.
-  - Galimybė išvesti rezultatus į failą.
-
-- **Papildoma naudotojo sąsaja:**
-
-  - Interaktyvus meniu su aiškaus pasirinkimų sąrašu.
-  - Galimybė tęsti įvedimą arba baigti programą pagal vartotojo pasirinkimą.
-
-- **Papildomi pakeitimai nuo paskutinio atnaujinimo:**
-  - Patobulintas laiko matavimas operacijoms (timer funkcijos).
-  - Naujas spartos analizės modulis, skirtas išmatuoti veikimo laiką atskiriems programos žingsniams.
-  - Daugiau išplėstų klaidų pranešimų ir patikrinimų interaktyviame meniu.
-
-## Kompiliavimas ir paleidimas
-
-Projekto surinkimui rekomenduojama naudoti Visual Studio Code su paruoštu `tasks.json` konfigūracija.
+## Įdiegimo instrukcijos
+Programą galite įdiegti ir paleisti dviem būdais:
+- **Per VSCode užduočių paleidimą:**  
+  Naudokite pateiktą `.vscode/tasks.json` konfiguraciją. Atidarykite komandų paletę (`Ctrl+Shift+P`) ir paleiskite "Tasks: Run Build Task".
+- **Per Makefile:**  
+  Naudokite įtrauktą Makefile. Terminale vykdykite:
+  • `make build_v` – sukompiliuoja programą su vector realizacija (OOP1_V.exe)  
+  • `make build_l` – sukompiliuoja programą su list realizacija (OOP1_L.exe)  
+  • `make build_d` – sukompiliuoja programą su deque realizacija (OOP1_D.exe)  
+  • `make test_v` – sukompiliuoja laiko matavimo programą su vector realizacija (testavimas_V.exe)  
+  • `make test_l` – sukompiliuoja laiko matavimo programą su list realizacija (testavimas_L.exe)  
+  • `make test_d` – sukompiliuoja laiko matavimo programą su deque realizacija (testavimas_D.exe)  
+  • `make clean` – ištrina sugeneruotus vykdomuosius failus.
 
 ### VSCode projektinio failo `tasks.json` konfigūracija
 
@@ -78,17 +61,87 @@ Projekto surinkimui rekomenduojama naudoti Visual Studio Code su paruoštu `task
 }
 ```
 
-Norėdami surinkti projektą, atidarykite VSCode komandų paletę (`Ctrl+Shift+P`), įveskite `Tasks: Run Build Task` ir pasirinkite aukščiau nurodytą užduotį.
-
 ## Programos spartos analizė
 
-| Testas                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+### Testai matuoja:
+- Duomenų nuskaitymą iš failo,
+- Konteinerio rūšiavimą (naudojant std::sort),
+- Studentų grupavimą į dvi kategorijas.
+
+### Sistemų Parametrai
+- CPU: AMD Ryzen 5 5600X (6 Cores @ 4.6GHz)
+- Memory: Corsair Vengeance 16GB (DDR4 3200MHz CL16)
+- Storage: Western Digital SN550 (1TB M.2 NVMe)
+
+### 1 Strategija
+(Sugrupuojama bendro studentų konteinerio kopija į dvi naujas, kur tas pats studentas saugomas abiejuose konteineriuose.)
+
+#### Vector:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Failų generavimas                    | 0.03s       | 0.3s         | 3s            | 29.88s         |
-| Failo įvedimas                       | 0.03s       | 0.25s        | 2.42s         | 24.4s          |
-| Studentų rūšiavimas/išdėliojimas     | 0.01s       | 0.2s         | 2.44s         | 30.47s         |
-| Išvestis į failą                     | 0.06s       | 0.54s        | 5s            | 42.28s         |
-| **Bendras programos veikimo laikas** | 0.13s       | 1.29s        | 12.86s        | 127.03s        |
+| Duomenu nuskaitymas                  | 0.02        | 0.15         | 1.38          | 14.08          |
+| Studentų rūšiavimas                  | 0.01        | 0.12         | 1.48          | 18             |
+| Sudentų išskirstymas                 | <0.01       | 0.03         | 0.37          | 7.42           |
+| **Bendras programos veikimo laikas** | 0.03        | 0.3          | 3.23          | 39.5           |
+
+
+#### List:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  | 0.02        | 0.14         | 1.39          | 14.15          |
+| Studentų rūšiavimas                  | <0.01       | 0.05         | 0.72          | 10.7           |
+| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.1           | 1.09           |
+| **Bendras programos veikimo laikas** | 0.02        | 0.19         | 2.21          | 25.94          |
+
+
+#### Deque:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  | 0.02        | 0.14         | 1.43          | 13.83          |
+| Studentų rūšiavimas                  | 0.01        | 0.16         | 2.07          | 24.69          |
+| Sudentų išskirstymas                 | <0.01       | 0.05         | 0.44          | 6.04           |
+| **Bendras programos veikimo laikas** | 0.03        | 0.35         | 3.94          | 44.56          |
+
+
+### 2 Strategija
+(Sukuriamas vienas naujas konteineris "kartotojams": studentai perkelti į naują konteinerį ir ištrinti iš pagrindinio, todėl likę tik "išlaikytojai".)
+
+#### Vector:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  |             |              |               |                |
+| Studentų rūšiavimas                  |             |              |               |                |
+| Sudentų išskirstymas                 |             |              |               |                |
+| **Bendras programos veikimo laikas** |             |              |               |                |
+
+
+#### List:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  |             |              |               |                |
+| Studentų rūšiavimas                  |             |              |               |                |
+| Sudentų išskirstymas                 |             |              |               |                |
+| **Bendras programos veikimo laikas** |             |              |               |                |
+
+
+#### Deque:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  |             |              |               |                |
+| Studentų rūšiavimas                  |             |              |               |                |
+| Sudentų išskirstymas                 |             |              |               |                |
+| **Bendras programos veikimo laikas** |             |              |               |                |
+
+### 3 Strategija
+(Pagerinama 2-oji strategija, naudojant efektyvias STL funkcijas)
+
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  |             |              |               |                |
+| Studentų rūšiavimas                  |             |              |               |                |
+| Sudentų išskirstymas                 |             |              |               |                |
+| **Bendras programos veikimo laikas** |             |              |               |                |
+
 
 ## Programos veikimo pavyzdžiai
 
