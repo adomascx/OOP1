@@ -1,48 +1,44 @@
 #include "apdorojimas.h"
 
-double vidurkis(int i)
+double vidurkis(const stud_struct &student)
 {
-    double vid{};
-    for (int j = 0; j < grupe[i].paz.size(); j++)
+    double vid = 0;
+    for (auto score : student.paz)
     {
-        vid += grupe[i].paz[j];
+        vid += score;
     }
-    vid /= grupe[i].paz.size();
-    return vid;
+    return vid / student.paz.size();
 }
 
-int mediana(int i)
+int mediana(const stud_struct &student)
 {
-    int med{};
-    int j = grupe[i].paz.size() / 2;
+    vector<int> temp = student.paz;
 
-    vector<int> sorted_paz = grupe[i].paz;
+    int j = temp.size() / 2;
 
-    if (grupe[i].paz.size() % 2 == 0)
+    if (temp.size() % 2 == 0)
     {
-        nth_element(sorted_paz.begin(), sorted_paz.begin() + j, sorted_paz.end());
-        int mid1 = sorted_paz[j];
+        nth_element(temp.begin(), temp.begin() + j, temp.end());
+        int mid1 = temp[j];
 
-        nth_element(sorted_paz.begin(), sorted_paz.begin() + j - 1, sorted_paz.end());
-        int mid2 = sorted_paz[j - 1];
+        nth_element(temp.begin(), temp.begin() + j - 1, temp.end());
+        int mid2 = temp[j - 1];
 
-        med = (mid1 + mid2) / 2;
+        return (mid1 + mid2) / 2;
     }
     else
     {
-        nth_element(sorted_paz.begin(), sorted_paz.begin() + j, sorted_paz.end());
-        med = sorted_paz[j];
+        nth_element(temp.begin(), temp.begin() + j, temp.end());
+        return temp[j];
     }
-
-    return med;
 }
 
-double vidurkis_gal(int i)
+double vidurkis_gal(const stud_struct &student)
 {
-    return (0.4 * vidurkis(i)) + (0.6 * grupe[i].egz);
+    return (0.4 * vidurkis(student)) + (0.6 * student.egz);
 }
 
-double mediana_gal(int i)
+double mediana_gal(const stud_struct &student)
 {
-    return (0.4 * mediana(i)) + (0.6 * grupe[i].egz);
+    return (0.4 * mediana(student)) + (0.6 * student.egz);
 }

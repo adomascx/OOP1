@@ -1,6 +1,6 @@
 #include "isvedimas.h"
 
-void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> &grupe)
+void rez_isvedimas(ostream &out, char choice_mediana, const list<stud_struct> &grupe)
 {
     out << setw(15) << left << "Vardas"
         << setw(15) << "Pavarde"
@@ -53,39 +53,32 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
     timer_pab("failo generavimas");
 }
 
-void stud_isskirstymas(const vector<stud_struct> &grupe)
+void stud_isskirstymas(const list<stud_struct> &grupe)
 {
-    vector<stud_struct> temp = grupe;
-    vector<stud_struct> islaikytojai;
-    vector<stud_struct> kartotojai;
+    list<stud_struct> temp = grupe;
 
     // visas masyvas rusiuojamas is karto, taip sumazinant velesniu palyginimu sk.
     timer_prad();
 
-    sort(temp.begin(), temp.end(), [](const auto &a, const auto &b)
-         { return a.galutinisVid > b.galutinisVid; });
+    // Naudojama list konteinerio sort funkcija
+    temp.sort([](const auto &a, const auto &b)
+              { return a.galutinisVid > b.galutinisVid; });
 
     timer_pab("Studentu rusiavimas");
 
-    // vektoriaus padalinimo i 2 vektorius optimizacija ( O(N^2) -> O(N) )
+    
     timer_prad();
 
-    // originalaus masyvo indeksas, per kuri perskiriama
-    auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
-                     { return grupe.galutinisVid < 5; });
+    auto i = find_if(temp.begin(), temp.end(), [](const auto &s)
+                     { return s.galutinisVid < 5; });
 
-    // nauji vektoriai alokuojami is anksto, kad nereiketu pertvarkyti atminties veliau
-    auto count_islaikytojai = distance(temp.begin(), i);
-    auto count_kartotojai = distance(i, temp.end());
-    islaikytojai.reserve(count_islaikytojai);
-    kartotojai.reserve(count_kartotojai);
+    list<stud_struct> islaikytojai;
+    list<stud_struct> kartotojai;
 
-    // i naujus vektorius kopijuojami jiems priklausantys originalo nariai
-    islaikytojai.insert(islaikytojai.end(), temp.begin(), i);
-    kartotojai.insert(kartotojai.end(), i, temp.end());
-    temp.clear();
+    islaikytojai.splice(islaikytojai.end(), temp, temp.begin(), i);
+    kartotojai.splice(kartotojai.end(), temp);
 
-    timer_pab("Kartotoju/Islaikytoju isdeliojimas i 2 vektorius");
+    timer_pab("Isdeliojimas i 2 vektorius");
 
     timer_prad();
 
@@ -105,5 +98,5 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     rez_isvedimas(fr_i, false, islaikytojai);
     fr_i.close();
 
-    timer_pab("Kartotoju/Islaikytoju isvedimas i faila");
+    timer_pab("Isvedimas i faila");
 }

@@ -38,16 +38,15 @@ int main()
     failo_ivedimas(fd);
     fd.close();
 
-    char choice_mediana = true;
+    char choice_mediana = 'y';
 
-    for (int i = 0; i < grupe.size(); i++)
+    // Naujas pakeitimas: naudojamas range-based for loop vietoj iteratorių, 
+    // kad iteracija per studentų sąrašą būtų suprantamesnė.
+    for (auto &studentas : grupe)
     {
-        grupe[i].galutinisVid = vidurkis_gal(i);
-
+        studentas.galutinisVid = vidurkis_gal(studentas);
         if (choice_mediana == 'y')
-        {
-            grupe[i].galutinisMed = mediana_gal(i);
-        }
+            studentas.galutinisMed = mediana_gal(studentas);
     }
 
     cout << "Studentai skirstomi pagal pazymius..." << endl;

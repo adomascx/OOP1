@@ -36,7 +36,7 @@ int main()
 
             failo_generavimas(gen_file, paz_sk, dydis);
         }
-        else
+        else if (choice != 'n')
             throw runtime_error("Netinkamas pasirinkimas. Galimi pasirinkimai: 'y' arba 'n'");
     }
     catch (runtime_error &e)
@@ -197,18 +197,15 @@ int main()
         return 1;
     }
 
-    // galutinio rezultato apskaiciavimas
-    for (int i = 0; i < grupe.size(); i++)
+    // Naujas pakeitimas: range-based for loop naudojamas vietoj iteratorių, kad kodas būtų trumpesnis ir aiškesnis.
+    for(auto &student : grupe)
     {
-        grupe[i].galutinisVid = vidurkis_gal(i);
-
-        if (choice_mediana == 'y')
-        {
-            grupe[i].galutinisMed = mediana_gal(i);
-        }
+        student.galutinisVid = vidurkis_gal(student);
+        if(choice_mediana == 'y')
+            student.galutinisMed = mediana_gal(student);
     }
 
-    // diskriminavimas (vektoriaus padalinimas i 2 dalis)
+    // diskriminavimas (list padalinimas i 2 dalis)
     try
     {
         cout << endl
@@ -229,32 +226,32 @@ int main()
          << "4 - Pagal galutini rezultata (mediana)" << endl
          << "5 - Nerusiuoti rezultatu" << endl;
 
-    // Duomenų rūšiavimo algoritmai
+    // Duomenų rūšiavimo algoritmai - naudojama list.sort() vietoj std::sort
     try
     {
         cin >> choice;
         switch (choice)
         {
         case '1':
-            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-                 { return a.var < b.var; });
+            grupe.sort([](const auto &a, const auto &b)
+                       { return a.var < b.var; });
             break;
 
         case '2':
-            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-                 { return a.pav < b.pav; });
+            grupe.sort([](const auto &a, const auto &b)
+                       { return a.pav < b.pav; });
             break;
 
         case '3':
-            sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-                 { return a.galutinisVid > b.galutinisVid; });
+            grupe.sort([](const auto &a, const auto &b)
+                       { return a.galutinisVid > b.galutinisVid; });
             break;
 
         case '4':
             if (choice_mediana == 'y')
             {
-                sort(grupe.begin(), grupe.end(), [](const auto &a, const auto &b)
-                     { return a.galutinisMed > b.galutinisMed; });
+                grupe.sort([](const auto &a, const auto &b)
+                           { return a.galutinisMed > b.galutinisMed; });
                 break;
             }
             else
@@ -294,7 +291,7 @@ int main()
 
             rez_isvedimas(fr, choice_mediana, grupe);
             fr.close();
-            break;
+            break; // Pridėtas break, kurio trūko originale
         }
 
         // I ekrana

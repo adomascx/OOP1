@@ -85,7 +85,7 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     kartotojai.insert(kartotojai.end(), i, temp.end());
     temp.clear();
 
-    timer_pab("Kartotoju/Islaikytoju isdeliojimas i 2 vektorius");
+    timer_pab("Isdeliojimas i 2 vektorius");
 
     timer_prad();
 
@@ -105,5 +105,5 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     rez_isvedimas(fr_i, false, islaikytojai);
     fr_i.close();
 
-    timer_pab("Kartotoju/Islaikytoju isvedimas i faila");
+    timer_pab("Isvedimas i faila");
 }
