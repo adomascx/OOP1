@@ -1,6 +1,6 @@
 #include "isvedimas.h"
 
-void rez_isvedimas(ostream &out, char choice_mediana, const vector<stud_struct> &grupe)
+void rez_isvedimas(ostream &out, char choice_mediana, const deque<stud_struct> &grupe)
 {
     out << setw(15) << left << "Vardas"
         << setw(15) << "Pavarde"
@@ -53,11 +53,11 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
     timer_pab("failo generavimas");
 }
 
-void stud_isskirstymas(const vector<stud_struct> &grupe)
+void stud_isskirstymas(const deque<stud_struct> &grupe)
 {
-    vector<stud_struct> temp = grupe;
-    vector<stud_struct> islaikytojai;
-    vector<stud_struct> kartotojai;
+    deque<stud_struct> temp = grupe;
+    deque<stud_struct> islaikytojai;
+    deque<stud_struct> kartotojai;
 
     // visas masyvas rusiuojamas is karto, taip sumazinant velesniu palyginimu sk.
     timer_prad();
@@ -71,21 +71,19 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     timer_prad();
 
     // originalaus masyvo indeksas, per kuri perskiriama
-    auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
-                     { return grupe.galutinisVid < 5; });
+    auto i = find_if(temp.begin(), temp.end(), [](const auto &s)
+                     { return s.galutinisVid < 5; });
 
     // nauji vektoriai alokuojami is anksto, kad nereiketu pertvarkyti atminties veliau
     auto count_islaikytojai = distance(temp.begin(), i);
     auto count_kartotojai = distance(i, temp.end());
-    islaikytojai.reserve(count_islaikytojai);
-    kartotojai.reserve(count_kartotojai);
 
     // i naujus vektorius kopijuojami jiems priklausantys originalo nariai
     islaikytojai.insert(islaikytojai.end(), temp.begin(), i);
     kartotojai.insert(kartotojai.end(), i, temp.end());
     temp.clear();
 
-    timer_pab("Kartotoju/Islaikytoju isdeliojimas i 2 vektorius");
+    timer_pab("Isdeliojimas i 2 vektorius");
 
     timer_prad();
 
@@ -105,5 +103,5 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     rez_isvedimas(fr_i, false, islaikytojai);
     fr_i.close();
 
-    timer_pab("Kartotoju/Islaikytoju isvedimas i faila");
+    timer_pab("Isvedimas i faila");
 }

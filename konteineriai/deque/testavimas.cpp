@@ -14,7 +14,7 @@ int main()
     cout << "Iveskite failo dydi: ";
     cin >> dydis;
     cout << endl;
-    /*if (dydis)
+/*if (dydis)
     {
         int paz_sk = 10;
         gen_file = "teksto_failai/studentai" + to_string(dydis) + ".txt";
@@ -38,16 +38,13 @@ int main()
     failo_ivedimas(fd);
     fd.close();
 
-    char choice_mediana = true;
+    char choice_mediana = 'y'; // Changed from true to 'y'
 
-    for (int i = 0; i < grupe.size(); i++)
+    for (auto &studentas : grupe)
     {
-        grupe[i].galutinisVid = vidurkis_gal(i);
-
+        studentas.galutinisVid = vidurkis_gal(studentas);
         if (choice_mediana == 'y')
-        {
-            grupe[i].galutinisMed = mediana_gal(i);
-        }
+            studentas.galutinisMed = mediana_gal(studentas);
     }
 
     cout << "Studentai skirstomi pagal pazymius..." << endl;

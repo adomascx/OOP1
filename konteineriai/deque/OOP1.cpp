@@ -198,13 +198,13 @@ int main()
     }
 
     // galutinio rezultato apskaiciavimas
-    for (int i = 0; i < grupe.size(); i++)
+    for (auto &student : grupe)
     {
-        grupe[i].galutinisVid = vidurkis_gal(i);
+        student.galutinisVid = vidurkis_gal(student);
 
         if (choice_mediana == 'y')
         {
-            grupe[i].galutinisMed = mediana_gal(i);
+            student.galutinisMed = mediana_gal(student);
         }
     }
 
