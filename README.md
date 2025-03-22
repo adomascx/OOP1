@@ -84,7 +84,6 @@ Programą galite įdiegti ir paleisti dviem būdais:
 | Sudentų išskirstymas                 | <0.01       | 0.03         | 0.37          | 7.42           |
 | **Bendras programos veikimo laikas** | 0.03        | 0.3          | 3.23          | 39.5           |
 
-
 #### List:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
@@ -92,7 +91,6 @@ Programą galite įdiegti ir paleisti dviem būdais:
 | Studentų rūšiavimas                  | <0.01       | 0.05         | 0.72          | 10.7           |
 | Sudentų išskirstymas                 | <0.01       | <0.01        | 0.1           | 1.09           |
 | **Bendras programos veikimo laikas** | 0.02        | 0.19         | 2.21          | 25.94          |
-
 
 #### Deque:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
@@ -102,46 +100,77 @@ Programą galite įdiegti ir paleisti dviem būdais:
 | Sudentų išskirstymas                 | <0.01       | 0.05         | 0.44          | 6.04           |
 | **Bendras programos veikimo laikas** | 0.03        | 0.35         | 3.94          | 44.56          |
 
+#### Pastebėjimai:
+ - Dėl duomenų dubliavimo dviejuose naujuose konteineriuose, programa naudoja labai daug atminties (pradeda naudoti swap'us)
+ - Implementacija su 'list' veikia greičiausiai, po jos eina 'vector' bei 'deque' implementacijos.
+ - Ilgiausiai užtruka išrūšiuoti studentus; List implementacija rūšiuoja efektyviausiai, todėl ir užtrunka mažiausiai laiko
 
 ### 2 Strategija
-(Sukuriamas vienas naujas konteineris "kartotojams": studentai perkelti į naują konteinerį ir ištrinti iš pagrindinio, todėl likę tik "išlaikytojai".)
+(Sukuriamas tik vienas naujas konteineris "kartotojams": studentai perkelti į naują konteinerį ir ištrinti iš pagrindinio, todėl likę tik "išlaikytojai")
 
 #### Vector:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  |             |              |               |                |
-| Studentų rūšiavimas                  |             |              |               |                |
-| Sudentų išskirstymas                 |             |              |               |                |
-| **Bendras programos veikimo laikas** |             |              |               |                |
-
+| Duomenu nuskaitymas                  | 0.01        | 0.13         | 1.29          | 13.07          |
+| Studentų rūšiavimas                  | <0.01       | 0.13         | 1.58          | 19.55          |
+| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.03          | 0.25           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.26         | 2.9           | 32.87          |
 
 #### List:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  |             |              |               |                |
-| Studentų rūšiavimas                  |             |              |               |                |
-| Sudentų išskirstymas                 |             |              |               |                |
-| **Bendras programos veikimo laikas** |             |              |               |                |
-
+| Duomenu nuskaitymas                  | 0.01        | 0.13         | 1.34          | 13.37          |
+| Studentų rūšiavimas                  | <0.01       | 0.03         | 0.63          | 9.05           |
+| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.1           | 1              |
+| **Bendras programos veikimo laikas** | 0.01        | 0.16         | 2.07          | 23.42          |
 
 #### Deque:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  |             |              |               |                |
-| Studentų rūšiavimas                  |             |              |               |                |
-| Sudentų išskirstymas                 |             |              |               |                |
-| **Bendras programos veikimo laikas** |             |              |               |                |
+| Duomenu nuskaitymas                  | 0.01        | 0.13         | 1.28          | 12.82          |
+| Studentų rūšiavimas                  | <0.01       | 0.13         | 1.66          | 20.43          |
+| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.08          | 0.82           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.26         | 3.02          | 34.07          |
+
+#### Pastebėjimai:
+ - Atsikračius nereikalingo konteinerių laikymo atmintyje, atminties sąnaudos ženkliai krenta. *(16+ GB --> 10 GB)* 
+ - Dėl optimizuoto studentų išskirstymo, programa bendrai veikia daug greičiau
+ - Studentų išskirstymo sudėtingumas mažeja nuo *O(NlogN)* iki *O(N)*
+
 
 ### 3 Strategija
-(Pagerinama 2-oji strategija, naudojant efektyvias STL funkcijas)
+(Pagerinama 2-oji strategija, naudojant efektyvias STL funkcijas, taip pat naudojamos kompiliavimo optimizavimo vėliavėlės (flags))
+
+#### Vector:
 
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  |             |              |               |                |
-| Studentų rūšiavimas                  |             |              |               |                |
-| Sudentų išskirstymas                 |             |              |               |                |
-| **Bendras programos veikimo laikas** |             |              |               |                |
+| Duomenu nuskaitymas                  | 0.01        | 0.1          | 1.06          | 10.83          |
+| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.14          | 1.67           |
+| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.01          | 0.12           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.11         | 1.21          | 12.62          |
 
+#### List:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  | 0.01        | 0.11         | 1.1           | 10.98          |
+| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.38          | 6.8            |
+| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.09          | 0.97           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.12         | 1.57          | 18.75          |
+
+#### Deque:
+| Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
+| ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
+| Duomenu nuskaitymas                  | 0.01        | 0.11         | 1.09          | 10.83          |
+| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.22          | 2.81           |
+| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.04          | 0.37           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.12         | 1.35          | 14.01          |
+
+#### Pastebėjimai:
+ - Programos veikimo sparta ženkliai nukrenta naudojant kompiliavimo vėliavėlę `-O3`
+ - Be to, pakeitimai programai naudojant daugiau STL funkcijų rodo *~10%* greitesnį veikimą
+ - Su optimizacijomis, 'vector' implementacija tampa sparčiausia, o 'list' lėčiausia
+ - Dauguma programos veikimo etapų veikia su *O(N)* sudėtingumu, išskyrus rūšiavimo operacijas
 
 ## Programos veikimo pavyzdžiai
 
