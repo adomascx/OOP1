@@ -3,7 +3,7 @@
 #include "bibliotekos/ivedimas.h"
 #include "bibliotekos/isvedimas.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     srand(69420);
     ar_skaiciuoti_laika = true;
@@ -11,9 +11,16 @@ int main()
     int dydis;
     string gen_file;
 
+    if (argc == 1)
+    {
     cout << "Iveskite failo dydi: ";
     cin >> dydis;
     cout << endl;
+    }
+    else
+    {
+        dydis = atoi(argv[1]);
+    }
     /*if (dydis)
     {
         int paz_sk = 10;
@@ -40,8 +47,6 @@ int main()
 
     char choice_mediana = 'y';
 
-    // Naujas pakeitimas: naudojamas range-based for loop vietoj iteratorių, 
-    // kad iteracija per studentų sąrašą būtų suprantamesnė.
     for (auto &studentas : grupe)
     {
         studentas.galutinisVid = vidurkis_gal(studentas);

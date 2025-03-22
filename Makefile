@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -fdiagnostics-color=always -g -std=c++17
+CXXFLAGS = -fdiagnostics-color=always -g -std=c++17 -O3
 
 build_d: konteineriai/deque/OOP1.cpp konteineriai/deque/bibliotekos/*.cpp
 	$(CXX) $(CXXFLAGS) -o build/OOP1_D.exe konteineriai/deque/OOP1.cpp konteineriai/deque/bibliotekos/*.cpp
