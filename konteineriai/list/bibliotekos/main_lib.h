@@ -23,6 +23,7 @@ using std::setw;
 using std::nth_element;
 using std::sort;
 using std::find_if;
+using std::partition;
 
 #include <string>
 using std::string;
