@@ -15,7 +15,7 @@ Programą galite įdiegti ir paleisti dviem būdais:
 - **Per VSCode užduočių paleidimą:**  
   Naudokite pateiktą `.vscode/tasks.json` konfiguraciją. Atidarykite komandų paletę (`Ctrl+Shift+P`) ir paleiskite "Tasks: Run Build Task".
 - **Per Makefile:**  
-  Naudokite įtrauktą Makefile. Terminale vykdykite:
+  Naudokite įtrauktą Makefile. Terminale vykdykite:   
   • `make build_v` – sukompiliuoja programą su vector realizacija (OOP1_V.exe)  
   • `make build_l` – sukompiliuoja programą su list realizacija (OOP1_L.exe)  
   • `make build_d` – sukompiliuoja programą su deque realizacija (OOP1_D.exe)  
