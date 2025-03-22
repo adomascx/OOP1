@@ -56,8 +56,6 @@ void failo_generavimas(string gen_file, int paz_sk, int dydis)
 void stud_isskirstymas(const vector<stud_struct> &grupe)
 {
     vector<stud_struct> temp = grupe;
-    vector<stud_struct> islaikytojai;
-    vector<stud_struct> kartotojai;
 
     // visas masyvas rusiuojamas is karto, taip sumazinant velesniu palyginimu sk.
     timer_prad();
@@ -67,23 +65,18 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
 
     timer_pab("Studentu rusiavimas");
 
-    // vektoriaus padalinimo i 2 vektorius optimizacija ( O(N^2) -> O(N) )
     timer_prad();
 
     // originalaus masyvo indeksas, per kuri perskiriama
     auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
                      { return grupe.galutinisVid < 5; });
 
-    // nauji vektoriai alokuojami is anksto, kad nereiketu pertvarkyti atminties veliau
-    auto count_islaikytojai = distance(temp.begin(), i);
-    auto count_kartotojai = distance(i, temp.end());
-    islaikytojai.reserve(count_islaikytojai);
-    kartotojai.reserve(count_kartotojai);
+    vector<stud_struct> kartotojai;
 
-    // i naujus vektorius kopijuojami jiems priklausantys originalo nariai
-    islaikytojai.insert(islaikytojai.end(), temp.begin(), i);
-    kartotojai.insert(kartotojai.end(), i, temp.end());
-    temp.clear();
+    // perkeliami duomenys is 'temp' i 'kartotojai'
+    kartotojai.insert(kartotojai.end(),
+                      make_move_iterator(i),
+                      make_move_iterator(temp.end()));
 
     timer_pab("Isdeliojimas i 2 vektorius");
 
@@ -102,7 +95,7 @@ void stud_isskirstymas(const vector<stud_struct> &grupe)
     if (!fr_i)
         throw runtime_error("Nepavyko atidaryti islaikytoju failo");
 
-    rez_isvedimas(fr_i, false, islaikytojai);
+    rez_isvedimas(fr_i, false, temp);
     fr_i.close();
 
     timer_pab("Isvedimas i faila");

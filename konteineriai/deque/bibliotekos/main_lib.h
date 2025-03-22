@@ -47,6 +47,9 @@ using std::chrono::time_point;
 #include <deque>
 using std::deque;
 
+#include <iterator>
+using std::make_move_iterator;
+
 static const char output_file[] = "teksto_failai/rezultatai.txt"; // failo, į kurį išvedami rezultatų duomenys, direktorija/pavadinimas
 
 struct stud_struct

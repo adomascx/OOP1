@@ -38,7 +38,7 @@ int main()
     failo_ivedimas(fd);
     fd.close();
 
-    char choice_mediana = 'y'; // Changed from true to 'y'
+    char choice_mediana = 'y';
 
     for (auto &studentas : grupe)
     {

@@ -69,14 +69,12 @@ void stud_isskirstymas(const list<stud_struct> &grupe)
     
     timer_prad();
 
-    auto i = find_if(temp.begin(), temp.end(), [](const auto &s)
-                     { return s.galutinisVid < 5; });
+    auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
+                     { return grupe.galutinisVid < 5; });
 
     list<stud_struct> islaikytojai;
-    list<stud_struct> kartotojai;
 
     islaikytojai.splice(islaikytojai.end(), temp, temp.begin(), i);
-    kartotojai.splice(kartotojai.end(), temp);
 
     timer_pab("Isdeliojimas i 2 vektorius");
 
@@ -87,7 +85,7 @@ void stud_isskirstymas(const list<stud_struct> &grupe)
     if (!fr_k)
         throw runtime_error("Nepavyko atidaryti kartotoju failo");
 
-    rez_isvedimas(fr_k, false, kartotojai);
+    rez_isvedimas(fr_k, false, temp);
     fr_k.close();
 
     // 'islaikytoju' isvedimas i faila
