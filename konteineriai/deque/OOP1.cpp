@@ -209,7 +209,7 @@ int main()
     {
         cout << endl
              << "Studentai skirstomi pagal pazymius..." << endl;
-        stud_isskirstymas(grupe);
+        stud_isskirstymas_3(grupe);
     }
     catch (runtime_error &e)
     {
