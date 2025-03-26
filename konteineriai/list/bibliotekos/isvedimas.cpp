@@ -63,9 +63,10 @@ void stud_isskirstymas(const list<stud_struct> &grupe)
     timer_pab("Studentu rusiavimas");
 
     timer_prad();
+    // originalaus masyvo indeksas, per kuri perskiriama
     auto i = find_if(temp.begin(), temp.end(), [](const stud_struct &grupe)
-                       { return grupe.galutinisVid < 5; });
-                       
+                     { return grupe.galutinisVid < 5; });
+
     list<stud_struct> islaikytojai;
     islaikytojai.splice(islaikytojai.end(), temp, temp.begin(), i);
     timer_pab("Studentu isskirstymas");
@@ -74,6 +75,7 @@ void stud_isskirstymas(const list<stud_struct> &grupe)
     ofstream fr_k("teksto_failai/kartotojai.txt");
     if (!fr_k)
         throw runtime_error("Nepavyko atidaryti kartotoju failo");
+
     rez_isvedimas(fr_k, 'n', temp);
     fr_k.close();
 

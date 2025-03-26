@@ -63,17 +63,21 @@ void stud_isskirstymas(const deque<stud_struct> &grupe)
     timer_pab("Studentu rusiavimas");
 
     timer_prad();
+    // originalaus masyvo indeksas, per kuri perskiriama
     auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
                      { return grupe.galutinisVid < 5; });
 
+    // perkeliami duomenys is 'temp' i 'kartotojai'
     deque<stud_struct> kartotojai(make_move_iterator(i), make_move_iterator(temp.end()));
     temp.erase(i, temp.end());
     timer_pab("Isdeliojimas i 2 konteinerius");
 
     // timer_prad();
+    // 'kartotoju' isvedimas i faila
     ofstream fr_k("teksto_failai/kartotojai.txt");
     if (!fr_k)
         throw runtime_error("Nepavyko atidaryti kartotoju failo");
+
     rez_isvedimas(fr_k, 'n', kartotojai);
     fr_k.close();
 
