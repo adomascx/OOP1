@@ -12,44 +12,49 @@ int main(int argc, char *argv[])
     char strategija;
     string gen_file;
 
-    if (argc == 1)
+    /*
+    Argumentai:
+    1. Failo dydis (10-1000)
+    2. Strategijos pasirinkimas (1-3)
+    3. Failo generavimo pasirinkimas (1/0)
+    */
+
+    switch (argc)
     {
+    case 2:
+        dydis = atoi(argv[1]) * 1000;
+        cout << "Iveskite strategija: ";
+        cin >> strategija;
+        break;
+
+    case 3:
+        dydis = atoi(argv[1]) * 1000;
+        strategija = argv[2][0];
+        break;
+
+    case 4:
+
+        dydis = atoi(argv[1]) * 1000;
+        strategija = argv[2][0];
+
+        if (std::string(argv[3]) == "1")
+        {
+            gen_file = "teksto_failai/studentai" + to_string(dydis) + ".txt";
+            failo_generavimas(gen_file, 10, dydis);
+        }
+        break;
+
+    default:
         cout << "Iveskite failo dydi: ";
         cin >> dydis;
         cout << endl;
         cout << "Iveskite strategija: ";
         cin >> strategija;
+        break;
     }
-    else if (argc == 2)
-    {
-        dydis = atoi(argv[1]);
-        cout << "Iveskite strategija: ";
-        cin >> strategija;
-    }
-    else
-    {
-        dydis = atoi(argv[1]);
-        strategija = argv[2][0];
-    }
-    /*if (dydis)
-    {
-        int paz_sk = 10;
-        gen_file = "teksto_failai/studentai" + to_string(dydis) + ".txt";
-        failo_generavimas(gen_file, paz_sk, dydis);
-    }
-
-    cout << "Nuskaityti ta pati faila? 1/0: ";
-        bool choice;
-    cin >> choice;
-
-    if (!choice)
-    {
-        cout << "Failo pavadinimas: " << endl;
-        cin >> gen_file;
-    }
-    */
 
     gen_file = "teksto_failai/studentai" + to_string(dydis) + ".txt";
+    cout << endl << "filesize: " << dydis;
 
     ifstream fd(gen_file);
     failo_ivedimas(fd);

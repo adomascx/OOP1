@@ -79,26 +79,26 @@ Programą galite įdiegti ir paleisti dviem būdais:
 #### Vector:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.02        | 0.15         | 1.38          | 14.08          |
-| Studentų rūšiavimas                  | 0.01        | 0.12         | 1.48          | 18             |
-| Sudentų išskirstymas                 | <0.01       | 0.03         | 0.37          | 7.42           |
-| **Bendras programos veikimo laikas** | 0.03        | 0.3          | 3.23          | 39.5           |
+| Duomenu nuskaitymas                  | 0.01        | 0.12         | 1.34          | 14.3           |
+| Studentų rūšiavimas                  | <0.01       | 0.02         | 0.18          | 2.17           |
+| Studentų išskirstymas                | <0.01       | 0.02         | 0.16          | 2.4            |
+| **Bendras programos veikimo laikas** | 0.01        | 0.16         | 1.68          | 18.87          |
 
 #### List:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.02        | 0.14         | 1.39          | 14.15          |
-| Studentų rūšiavimas                  | <0.01       | 0.05         | 0.72          | 10.7           |
-| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.1           | 1.09           |
-| **Bendras programos veikimo laikas** | 0.02        | 0.19         | 2.21          | 25.94          |
+| Duomenu nuskaitymas                  | 0.02        | 0.13         | 1.35          | 13.12          |
+| Studentų rūšiavimas                  | <0.01       | 0.03         | 0.49          | 8.09           |
+| Studentų išskirstymas                | <0.01       | 0.04         | 0.36          | 4.81           |
+| **Bendras programos veikimo laikas** | 0.02        | 0.2          | 2.2           | 26.02          |
 
 #### Deque:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.02        | 0.14         | 1.43          | 13.83          |
-| Studentų rūšiavimas                  | 0.01        | 0.16         | 2.07          | 24.69          |
-| Sudentų išskirstymas                 | <0.01       | 0.05         | 0.44          | 6.04           |
-| **Bendras programos veikimo laikas** | 0.03        | 0.35         | 3.94          | 44.56          |
+| Duomenu nuskaitymas                  | 0.01        | 0.13         | 1.32          | 13.43          |
+| Studentų rūšiavimas                  | <0.01       | 0.02         | 0.25          | 3.56           |
+| Studentų išskirstymas                | <0.01       | 0.03         | 0.25          | 2.64           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.18         | 1.82          | 19.63          |
 
 #### Pastebėjimai:
  - Dėl duomenų dubliavimo dviejuose naujuose konteineriuose, programa naudoja labai daug atminties (pradeda naudoti swap'us)
@@ -111,26 +111,26 @@ Programą galite įdiegti ir paleisti dviem būdais:
 #### Vector:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.01        | 0.13         | 1.29          | 13.07          |
-| Studentų rūšiavimas                  | <0.01       | 0.13         | 1.58          | 19.55          |
-| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.03          | 0.25           |
-| **Bendras programos veikimo laikas** | 0.01        | 0.26         | 2.9           | 32.87          |
+| Duomenu nuskaitymas                  | 0.01        | 0.12         | 1.3           | 12.81          |
+| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.16          | 2.3            |
+| Studentų išskirstymas                | <0.01       | <0.01        | 0.01          | 0.12           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.13         | 1.47          | 15.23          |
 
 #### List:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.01        | 0.13         | 1.34          | 13.37          |
-| Studentų rūšiavimas                  | <0.01       | 0.03         | 0.63          | 9.05           |
-| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.1           | 1              |
-| **Bendras programos veikimo laikas** | 0.01        | 0.16         | 2.07          | 23.42          |
+| Duomenu nuskaitymas                  | 0.01        | 0.15         | 1.34          | 13.35          |
+| Studentų rūšiavimas                  | <0.01       | 0.02         | 0.49          | 7.9            |
+| Studentų išskirstymas                | <0.01       | <0.01        | 0.11          | 1.08           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.17         | 1.94          | 22.33          |
 
 #### Deque:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.01        | 0.13         | 1.28          | 12.82          |
-| Studentų rūšiavimas                  | <0.01       | 0.13         | 1.66          | 20.43          |
-| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.08          | 0.82           |
-| **Bendras programos veikimo laikas** | 0.01        | 0.26         | 3.02          | 34.07          |
+| Duomenu nuskaitymas                  | 0.01        | 0.15         | 1.51          | 12.28          |
+| Studentų rūšiavimas                  | <0.01       | 0.02         | 0.27          | 3.19           |
+| Studentų išskirstymas                | <0.01       | <0.01        | 0.04          | 0.3            |
+| **Bendras programos veikimo laikas** | 0.01        | 0.17         | 1.82          | 15.77          |
 
 #### Pastebėjimai:
  - Atsikračius nereikalingo konteinerių laikymo atmintyje, atminties sąnaudos ženkliai krenta. *(16+ GB --> 10 GB)* 
@@ -145,26 +145,26 @@ Programą galite įdiegti ir paleisti dviem būdais:
 
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.01        | 0.1          | 1.06          | 10.83          |
-| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.14          | 1.67           |
-| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.01          | 0.12           |
-| **Bendras programos veikimo laikas** | 0.01        | 0.11         | 1.21          | 12.62          |
+| Duomenu nuskaitymas                  | 0.01        | 0.11         | 1.32          | 12.98          |
+| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.16          | 1.93           |
+| Studentų išskirstymas                | <0.01       | <0.01        | 0.02          | 0.15           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.12         | 1.5           | 15.06          |
 
 #### List:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.01        | 0.11         | 1.1           | 10.98          |
-| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.38          | 6.8            |
-| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.09          | 0.97           |
-| **Bendras programos veikimo laikas** | 0.01        | 0.12         | 1.57          | 18.75          |
+| Duomenu nuskaitymas                  | 0.01        | 0.12         | 1.29          | 13.33          |
+| Studentų rūšiavimas                  | <0.01       | 0.02         | 0.46          | 7.76           |
+| Studentų išskirstymas                | <0.01       | <0.01        | 0.1           | 1.07           |
+| **Bendras programos veikimo laikas** | 0.01        | 0.14         | 1.85          | 22.16          |
 
 #### Deque:
 | Testai                               | 10000 įrašų | 100000 įrašų | 1000000 įrašų | 10000000 įrašų |
 | ------------------------------------ | ----------- | ------------ | ------------- | -------------- |
-| Duomenu nuskaitymas                  | 0.01        | 0.11         | 1.09          | 10.83          |
-| Studentų rūšiavimas                  | <0.01       | 0.01         | 0.22          | 2.81           |
-| Sudentų išskirstymas                 | <0.01       | <0.01        | 0.04          | 0.37           |
-| **Bendras programos veikimo laikas** | 0.01        | 0.12         | 1.35          | 14.01          |
+| Duomenu nuskaitymas                  | 0.01        | 0.16         | 1.26          | 13.33          |
+| Studentų rūšiavimas                  | <0.01       | 0.02         | 0.3           | 3.23           |
+| Studentų išskirstymas                | <0.01       | <0.01        | 0.04          | 0.4            |
+| **Bendras programos veikimo laikas** | 0.01        | 0.18         | 1.6           | 16.96          |
 
 #### Pastebėjimai:
  - Programos veikimo sparta ženkliai nukrenta naudojant kompiliavimo vėliavėlę `-O3`

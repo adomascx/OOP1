@@ -111,7 +111,7 @@ void stud_isskirstymas_2(const list<stud_struct> &grupe)
 
     timer_pab("Isdeliojimas i 2 vektorius");
 
-    //timer_prad();
+    // timer_prad();
 
     // 'kartotoju' isvedimas i faila
     ofstream fr_k("teksto_failai/kartotojai.txt");
@@ -129,7 +129,7 @@ void stud_isskirstymas_2(const list<stud_struct> &grupe)
     rez_isvedimas(fr_i, false, islaikytojai);
     fr_i.close();
 
-    //timer_pab("Isvedimas i faila");
+    // timer_pab("Isvedimas i faila");
 }
 
 void stud_isskirstymas_1(const list<stud_struct> &grupe)
@@ -147,18 +147,21 @@ void stud_isskirstymas_1(const list<stud_struct> &grupe)
 
     timer_prad();
 
-    auto i = find_if(temp.begin(), temp.end(), [](const auto &s)
-                     { return s.galutinisVid < 5; });
-
     list<stud_struct> islaikytojai;
     list<stud_struct> kartotojai;
 
-    islaikytojai.splice(islaikytojai.end(), temp, temp.begin(), i);
-    kartotojai.splice(kartotojai.end(), temp);
+    // nauja (blogesne) implementacija
+    for (auto i : temp)
+    {
+        if (i.galutinisVid < 5)
+            kartotojai.push_back(i);
+        else
+            islaikytojai.push_back(i);
+    }
 
     timer_pab("Isdeliojimas i 2 vektorius");
 
-    //timer_prad();
+    // timer_prad();
 
     // 'kartotoju' isvedimas i faila
     ofstream fr_k("teksto_failai/kartotojai.txt");
@@ -176,5 +179,5 @@ void stud_isskirstymas_1(const list<stud_struct> &grupe)
     rez_isvedimas(fr_i, false, islaikytojai);
     fr_i.close();
 
-    //timer_pab("Isvedimas i faila");
+    // timer_pab("Isvedimas i faila");
 }

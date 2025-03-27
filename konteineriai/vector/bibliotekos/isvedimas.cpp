@@ -115,10 +115,10 @@ void stud_isskirstymas_2(const vector<stud_struct> &grupe)
     kartotojai.insert(kartotojai.end(),
                       make_move_iterator(i),
                       make_move_iterator(temp.end()));
-
+    
     timer_pab("Isdeliojimas i 2 vektorius");
 
-    //timer_prad();
+    // timer_prad();
 
     // 'kartotoju' isvedimas i faila
     ofstream fr_k("teksto_failai/kartotojai.txt");
@@ -136,7 +136,7 @@ void stud_isskirstymas_2(const vector<stud_struct> &grupe)
     rez_isvedimas(fr_i, false, temp);
     fr_i.close();
 
-    //timer_pab("Isvedimas i faila");
+    // timer_pab("Isvedimas i faila");
 }
 
 void stud_isskirstymas_1(const vector<stud_struct> &grupe)
@@ -153,27 +153,20 @@ void stud_isskirstymas_1(const vector<stud_struct> &grupe)
 
     timer_pab("Studentu rusiavimas");
 
-    // vektoriaus padalinimo i 2 vektorius optimizacija ( O(N^2) -> O(N) )
     timer_prad();
 
-    // originalaus masyvo indeksas, per kuri perskiriama
-    auto i = find_if(temp.begin(), temp.end(), [](const auto &grupe)
-                     { return grupe.galutinisVid < 5; });
-
-    // nauji vektoriai alokuojami is anksto, kad nereiketu pertvarkyti atminties veliau
-    auto count_islaikytojai = distance(temp.begin(), i);
-    auto count_kartotojai = distance(i, temp.end());
-    islaikytojai.reserve(count_islaikytojai);
-    kartotojai.reserve(count_kartotojai);
-
-    // i naujus vektorius kopijuojami jiems priklausantys originalo nariai
-    islaikytojai.insert(islaikytojai.end(), temp.begin(), i);
-    kartotojai.insert(kartotojai.end(), i, temp.end());
-    temp.clear();
+    // nauja (blogesne) implementacija
+    for (auto i : temp)
+    {
+        if (i.galutinisVid < 5)
+            kartotojai.push_back(i);
+        else
+            islaikytojai.push_back(i);
+    }
 
     timer_pab("Isdeliojimas i 2 vektorius");
 
-    //timer_prad();
+    // timer_prad();
 
     // 'kartotoju' isvedimas i faila
     ofstream fr_k("teksto_failai/kartotojai.txt");
@@ -191,5 +184,5 @@ void stud_isskirstymas_1(const vector<stud_struct> &grupe)
     rez_isvedimas(fr_i, false, islaikytojai);
     fr_i.close();
 
-    //timer_pab("Isvedimas i faila");
+    // timer_pab("Isvedimas i faila");
 }
